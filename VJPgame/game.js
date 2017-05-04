@@ -1,6 +1,11 @@
 
 var game = new Phaser.Game(720, 480, Phaser.AUTO, '', { preload: preload, create: create, update: update });
 
+function die(player, cars) {
+	player.frame = 278;
+}
+
+
 function preload() {
 	game.load.image('background1', 'assets/pictures/background1.png');
 	game.load.image('background2', 'assets/pictures/background2.png');
@@ -30,41 +35,60 @@ function create() {
 	cars.enableBody = true;
 	
 	player = game.add.sprite(32, game.world.height - 150, 'dude');
+	game.physics.arcade.enable(player);
+	player.body.collideWorldBounds = true;
 	
-	player.animations.add('left', [0, 1, 2, 3], 10, true);
-    player.animations.add('right', [5, 6, 7, 8], 10, true);
+	player.animations.add('up', [104, 105, 106, 107, 108, 109, 110, 111, 112], 10, true);
+    player.animations.add('right', [143, 144, 145, 146, 147, 148, 149, 150, 151], 10, true);
+	player.animations.add('left', [117, 118, 119, 120, 121, 122, 123, 124, 125], 10, true);
+	player.animations.add('down', [130, 131, 132, 133, 134, 135, 136, 137, 138], 10, true);
 	
 	for (var i = 0; i < 12; i++)
     {
-        var car = cars.create(110, 130, 'car');
+        var car = cars.create(i * 70, 130, 'car');
+		car.body.velocity.x = 30;
+		
 	}
 }
 
 function update() {
 	
 	var cursors = game.input.keyboard.createCursorKeys();
-
+	
+	player.body.velocity.x = 0;
+	player.body.velocity.y = 0;
 	
 	if (cursors.left.isDown)
     {
-        //  Move to the left
         player.body.velocity.x = -150;
 
         player.animations.play('left');
     }
     else if (cursors.right.isDown)
     {
-        //  Move to the right
         player.body.velocity.x = 150;
 
         player.animations.play('right');
+    }
+	 else if (cursors.up.isDown)
+    {
+        player.body.velocity.y = -150;
+
+        player.animations.play('up');
+    }
+	 else if (cursors.down.isDown)
+    {
+        player.body.velocity.y = 150;
+
+        player.animations.play('down');
     }
     else
     {
         //  Stand still
         player.animations.stop();
 
-        player.frame = 4;
+        player.frame = 26;
     }
 
+	game.physics.arcade.collide(player, cars, die, null, this);
 }
