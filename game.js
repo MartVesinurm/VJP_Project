@@ -15,7 +15,29 @@ function preload() {
 	game.load.image('nopeusmerkki', 'assets/pictures/nopeusmerkki.png');
 	
 	
-    game.load.image('car', 'assets/pictures/cars/car2.png');
+    game.load.image('car', 'assets/pictures/cars/car1_1.png');
+    game.load.image('car', 'assets/pictures/cars/car1_2.png');
+
+    game.load.image('car', 'assets/pictures/cars/car2_1.png');
+    game.load.image('car', 'assets/pictures/cars/car2_2.png');
+
+    game.load.image('car', 'assets/pictures/cars/car3_1.png');
+    game.load.image('car', 'assets/pictures/cars/car3_2.png');
+
+    game.load.image('car', 'assets/pictures/cars/car4_1.png');
+    game.load.image('car', 'assets/pictures/cars/car4_2.png');
+	
+	game.load.image('car', 'assets/pictures/cars/car5_1.png');
+    game.load.image('car', 'assets/pictures/cars/car5_2.png');
+
+    game.load.image('car', 'assets/pictures/cars/car6_1.png');
+    game.load.image('car', 'assets/pictures/cars/car6_2.png');
+
+    game.load.image('car', 'assets/pictures/cars/car7_1.png');
+    game.load.image('car', 'assets/pictures/cars/car7_2.png');
+
+    game.load.image('car', 'assets/pictures/cars/car8_1.png');
+    game.load.image('car', 'assets/pictures/cars/car8_2.png');
 	
 	
     game.load.spritesheet('dude', 'assets/pictures/character.png', 32, 32);
