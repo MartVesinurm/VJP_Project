@@ -3,6 +3,8 @@ var game = new Phaser.Game(720, 480, Phaser.AUTO, '', { preload: preload, create
 
 function die(player, cars) {
 	player.frame = 278;
+	player.body.x = 32;
+	player.body.y = game.world.height - 150;
 }
 
 
@@ -46,8 +48,10 @@ function preload() {
 
 var cars;
 var holes;
-var specials;
+var marks;
+var drinks;
 var player;
+var playerSpeed = 150;
 
 function create() {	
 	
@@ -70,16 +74,30 @@ function create() {
 	for (var i = 0; i < 12; i+=3)
     {
         var car11 = cars.create(i * 70, 159, 'car11');
+		car11.body.immovable = true;
 		car11.body.velocity.x = 30;
+		
 		
 	}
 
 	for (var i = 0; i < 12; i+=3)
     {
         var car12 = cars.create(i * 70, 289, 'car12');
+		car12.body.immovable = true;
 		car12.body.velocity.x = -30;
 		
 	}
+	
+	marks = game.add.group();
+	marks.enableBody = true;
+	
+	var mark = marks.create(10, 10, 'nopeusmerkki');
+	
+	drinks = game.add.group();
+	drinks.enableBody = true;
+	var drink = drinks.create(100, 100, 'mofo');
+	
+	
 }
 
 function update() {
@@ -91,25 +109,25 @@ function update() {
 	
 	if (cursors.left.isDown)
     {
-        player.body.velocity.x = -150;
+        player.body.velocity.x = -playerSpeed;
 
         player.animations.play('left');
     }
     else if (cursors.right.isDown)
     {
-        player.body.velocity.x = 150;
+        player.body.velocity.x = playerSpeed;
 
         player.animations.play('right');
     }
 	 else if (cursors.up.isDown)
     {
-        player.body.velocity.y = -150;
+        player.body.velocity.y = -playerSpeed;
 
         player.animations.play('up');
     }
 	 else if (cursors.down.isDown)
     {
-        player.body.velocity.y = 150;
+        player.body.velocity.y = playerSpeed;
 
         player.animations.play('down');
     }
@@ -120,6 +138,20 @@ function update() {
 
         player.frame = 26;
     }
-
+	
+	game.physics.arcade.overlap(player, drinks, energia, null, this);
+	game.physics.arcade.overlap(player, marks, nopeus, null, this);
 	game.physics.arcade.collide(player, cars, die, null, this);
+}
+
+function energia(player, drink) {
+	drink.kill()
+	playerSpeed = 300;
+}
+
+function nopeus(player, mark) {
+	mark.kill()
+	cars.forEach(function(item) {
+		item.body.velocity.x = 40;
+	})
 }
