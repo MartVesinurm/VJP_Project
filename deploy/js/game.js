@@ -232,9 +232,11 @@ function update() {
 	// game.physics.arcade.collide(cars, cars, slowDown, null, this)
 }
 
+
+
 function energia(player, drink) {
 	drink.kill()
-	playerSpeed = 300;
+	playerSpeed = playerSpeed * 2;
 }
 
 function nopeus(player, mark) {
