@@ -75,7 +75,7 @@ function create() {
     {
         var car11 = cars.create(i * 70, 159, 'car11');
 		car11.body.immovable = true;
-		car11.body.velocity.x = 30;
+		car11.body.velocity.x = randSpeed();
 		
 		
 	}
@@ -96,9 +96,53 @@ function create() {
 	drinks = game.add.group();
 	drinks.enableBody = true;
 	var drink = drinks.create(100, 100, 'mofo');
+
+	// game.input.onTap.add(spawnCar(), this);
 	
 	
 }
+
+function direction(){
+	return Math.floor(Math.random() * 4) + 1;
+};
+
+function randSpeed(){
+	return Math.floor(Math.random() * 30) + 30
+}
+
+function checkPos(car) {
+	if(car.x > 760){
+		car.x = -32
+	}else if(car.x < -40){
+		car.x = 752
+	}
+}
+
+// function spawnCar(){
+// 	var car12 = cars.create(0, 289, 'car12');
+// 		car12.body.immovable = true;
+// 		car12.body.velocity.x = -30;
+// 	// if(dir == 1){
+// 	// 	var car11 = cars.add(0, 159, 'car11');
+// 	// 	car11.body.immovable = true;
+// 	// 	car11.body.velocity.x = 30;
+
+// 	// }else if(dir == 2){
+// 	// 	var car11 = cars.add(0, 259, 'car11');
+// 	// 	car11.body.immovable = true;
+// 	// 	car11.body.velocity.x = 30;
+
+// 	// }else if(dir == 3){
+// 	// 	var car12 = cars.add(720, 289, 'car12');
+// 	// 	car12.body.immovable = true;
+// 	// 	car12.body.velocity.x = -30;
+
+// 	// }else{
+// 	// 	var car12 = cars.add(720, 319, 'car12');
+// 	// 	car12.body.immovable = true;
+// 	// 	car12.body.velocity.x = -30;
+// 	// }
+// };
 
 function update() {
 	
@@ -106,6 +150,8 @@ function update() {
 	
 	player.body.velocity.x = 0;
 	player.body.velocity.y = 0;
+
+	cars.forEach(checkPos, this);
 	
 	if (cursors.left.isDown)
     {
@@ -142,6 +188,7 @@ function update() {
 	game.physics.arcade.overlap(player, drinks, energia, null, this);
 	game.physics.arcade.overlap(player, marks, nopeus, null, this);
 	game.physics.arcade.collide(player, cars, die, null, this);
+	// game.physics.arcade.collide(cars, cars, slowDown, null, this)
 }
 
 function energia(player, drink) {
