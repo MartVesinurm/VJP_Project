@@ -13,31 +13,32 @@ function preload() {
 	
     game.load.image('mofo', 'assets/pictures/möfö.png');
 	game.load.image('nopeusmerkki', 'assets/pictures/nopeusmerkki.png');
+
+	game.load.image('pothole', 'assets/pictures/pothole.png');
 	
+    game.load.image('car11', 'assets/pictures/cars/car1_1.png');
+    game.load.image('car12', 'assets/pictures/cars/car1_2.png');
+
+    game.load.image('car21', 'assets/pictures/cars/car2_1.png');
+    game.load.image('car22', 'assets/pictures/cars/car2_2.png');
+
+    game.load.image('car31', 'assets/pictures/cars/car3_1.png');
+    game.load.image('car32', 'assets/pictures/cars/car3_2.png');
+
+    game.load.image('car41', 'assets/pictures/cars/car4_1.png');
+    game.load.image('car42', 'assets/pictures/cars/car4_2.png');
 	
-    game.load.image('car', 'assets/pictures/cars/car1_1.png');
-    game.load.image('car', 'assets/pictures/cars/car1_2.png');
+	game.load.image('car51', 'assets/pictures/cars/car5_1.png');
+    game.load.image('car52', 'assets/pictures/cars/car5_2.png');
 
-    game.load.image('car', 'assets/pictures/cars/car2_1.png');
-    game.load.image('car', 'assets/pictures/cars/car2_2.png');
+    game.load.image('car61', 'assets/pictures/cars/car6_1.png');
+    game.load.image('car62', 'assets/pictures/cars/car6_2.png');
 
-    game.load.image('car', 'assets/pictures/cars/car3_1.png');
-    game.load.image('car', 'assets/pictures/cars/car3_2.png');
+    game.load.image('car71', 'assets/pictures/cars/car7_1.png');
+    game.load.image('car72', 'assets/pictures/cars/car7_2.png');
 
-    game.load.image('car', 'assets/pictures/cars/car4_1.png');
-    game.load.image('car', 'assets/pictures/cars/car4_2.png');
-	
-	game.load.image('car', 'assets/pictures/cars/car5_1.png');
-    game.load.image('car', 'assets/pictures/cars/car5_2.png');
-
-    game.load.image('car', 'assets/pictures/cars/car6_1.png');
-    game.load.image('car', 'assets/pictures/cars/car6_2.png');
-
-    game.load.image('car', 'assets/pictures/cars/car7_1.png');
-    game.load.image('car', 'assets/pictures/cars/car7_2.png');
-
-    game.load.image('car', 'assets/pictures/cars/car8_1.png');
-    game.load.image('car', 'assets/pictures/cars/car8_2.png');
+    game.load.image('car81', 'assets/pictures/cars/car8_1.png');
+    game.load.image('car82', 'assets/pictures/cars/car8_2.png');
 	
 	
     game.load.spritesheet('dude', 'assets/pictures/character.png', 32, 32);
@@ -54,6 +55,7 @@ function create() {
 	
 	game.add.sprite(0, 0, 'background1');
 	cars = game.add.group();
+	potholes = game.add.group();
 	cars.enableBody = true;
 	
 	player = game.add.sprite(32, game.world.height - 150, 'dude');
@@ -67,8 +69,15 @@ function create() {
 	
 	for (var i = 0; i < 12; i++)
     {
-        var car = cars.create(i * 70, 130, 'car');
-		car.body.velocity.x = 30;
+        var car11 = cars.create(i * 70, 130, 'car11');
+		car11.body.velocity.x = 30;
+		
+	}
+
+	for (var i = 0; i < 12; i++)
+    {
+        var car12 = cars.create(i * 70, 290, 'car12');
+		car12.body.velocity.x = -30;
 		
 	}
 }
