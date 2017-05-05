@@ -42,12 +42,6 @@ n.cssHooks[b]=Ua(l.pixelPosition,function(a,c){return c?(c=Sa(a,b),Oa.test(c)?n(
 
 var game = new Phaser.Game(720, 480, Phaser.AUTO, '', { preload: preload, create: create, update: update });
 
-function die(player, cars) {
-	player.frame = 278;
-	player.body.x = 32;
-	player.body.y = game.world.height - 150;
-}
-
 
 function preload() {
 	game.load.image('background1', 'assets/pictures/background1.png');
@@ -125,7 +119,7 @@ function create() {
     {
         var car12 = cars.create(i * 70, 289, 'car12');
 		car12.body.immovable = true;
-		car12.body.velocity.x = -30;
+		car12.body.velocity.x = -randSpeed();
 		
 	}
 	
@@ -133,6 +127,7 @@ function create() {
 	marks.enableBody = true;
 	
 	var mark = marks.create(10, 10, 'nopeusmerkki');
+		mark = marks.create(50, 10, 'nopeusmerkki');
 	
 	drinks = game.add.group();
 	drinks.enableBody = true;
@@ -229,10 +224,19 @@ function update() {
 	game.physics.arcade.overlap(player, drinks, energia, null, this);
 	game.physics.arcade.overlap(player, marks, nopeus, null, this);
 	game.physics.arcade.collide(player, cars, die, null, this);
-	// game.physics.arcade.collide(cars, cars, slowDown, null, this)
+	game.physics.arcade.collide(cars, cars, slowDown, null, this)
+}
+
+function slowDown(car1, car2) {
+	car2.body.velocity.x -= 10
 }
 
 
+function die(player, cars) {
+	player.frame = 278;
+	player.body.x = 32;
+	player.body.y = game.world.height - 150;
+}
 
 function energia(player, drink) {
 	drink.kill()
