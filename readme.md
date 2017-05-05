@@ -11,14 +11,18 @@ Game is build with following technologies:
 
 
 ## Game features
-
 *   Awesome graphics
 * 	Great idea
 * 	Etc...
 
+## Instructions on running the game
+* 	Git clone or download project as .zip
+* 	Open the game folder in terminal 
+* 	Run game using command **'grunt'**
+* 	Enjoy
 
-## Creators and credits
- 	
+
+## Creators and credits	
 *	**Leevi Lappi**, code and graphics
 * 	**Märt Vesinurm**, main code
 * 	**Krista Huhtamäki**, sounds 	
