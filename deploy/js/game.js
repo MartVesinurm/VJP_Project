@@ -48,8 +48,8 @@ function preload() {
 	game.load.image('background2', 'assets/pictures/background2.png');
 	game.load.image('background3', 'assets/pictures/background3.png');
 	
-    game.load.image('mofo', 'assets/pictures/möfö.png');
-	game.load.image('nopeusmerkki', 'assets/pictures/nopeusmerkki.png');
+    game.load.image('energyDrink', 'assets/pictures/möfö.png');
+	game.load.image('SpeedSign', 'assets/pictures/nopeusmerkki.png');
 
 	game.load.image('pothole', 'assets/pictures/pothole.png');
 	
@@ -87,6 +87,8 @@ var marks;
 var drinks;
 var player;
 var playerSpeed = 150;
+var carSpeedRight = 40;
+var carSpeedLeft = -40;
 var potholesRepaired = 0;
 var timeInterval = 3500;
 
@@ -110,16 +112,11 @@ function create() {
 	player.animations.add('left', [117, 118, 119, 120, 121, 122, 123, 124, 125], 10, true);
 	player.animations.add('down', [130, 131, 132, 133, 134, 135, 136, 137, 138], 10, true);
 
-	
-	marks = game.add.group();
-	marks.enableBody = true;
-	
-	var mark = marks.create(10, 10, 'nopeusmerkki');
-		mark = marks.create(50, 10, 'nopeusmerkki');
-	
 	drinks = game.add.group();
+	marks = game.add.group();
+
+	marks.enableBody = true;
 	drinks.enableBody = true;
-	var drink = drinks.create(100, 100, 'mofo');
 
 	text = game.add.text(665, 24, "Score: 0", {
         font: "24px Arial",
@@ -131,6 +128,9 @@ function create() {
 
     timer = game.time.events.loop(timeInterval, addCars, this); 
     potholeTimer = game.time.events.loop(5000, addPotholes, this); 
+    powerupTimer = game.time.events.loop(8000, addPowerups, this); 
+
+}
 	
 	function addOneCar(x, y, sprite, carDir) {
 	    // Create a pipe at the position x and y
@@ -144,9 +144,9 @@ function create() {
 
 	    // Add velocity to the pipe to make it move left
 	    if(carDir === 1 || carDir === 2){
-	    	carToAdd.body.velocity.x = 30;
+	    	carToAdd.body.velocity.x = carSpeedRight;
 		}else{
-			carToAdd.body.velocity.x = -30;
+			carToAdd.body.velocity.x = -carSpeedLeft;
 		}
 
 
@@ -165,10 +165,8 @@ function create() {
 
 	    if(dir == 1){
 			addOneCar(0, 161, 'car11', dir)
-
 		}else if(dir == 2){
 			addOneCar(0, 290, 'car11', dir)
-
 		}else if(dir == 3){
 			addOneCar(720, 130, 'car12', dir)
 		}else{
@@ -180,13 +178,13 @@ function create() {
 
 
 	function addPothole(x, y) {
-	    // Create a pipe at the position x and y
+	    // Create a pothole at the position x and y
 	    var potholeToAdd = game.add.sprite(x, y, 'pothole');
 
-	    // Add the pipe to our previously created group
+	    // Add the pothole to our previously created group
 	    potholes.add(potholeToAdd);
 
-	    // Enable physics on the pipe 
+	    // Enable physics on the pothole
 	    game.physics.arcade.enable(potholeToAdd);
 
 	}
@@ -204,24 +202,44 @@ function create() {
 	     
 	}
 
-}
+	function addPowerup(x,y,type){
+		if(type == 'SpeedSign'){
+			var mark = game.add.sprite(x, y, 'SpeedSign');
+			marks.add(mark);
+		}else if(type == 'energyDrink'){
+			var drink = game.add.sprite(x, y, 'energyDrink')
+			drinks.add(drink);
+		}
 
-
-function direction(){
-	return Math.floor(Math.random() * 4) + 1;
-};
-
-function randSpeed(){
-	return Math.floor(Math.random() * 30) + 30
-}
-
-function checkPos(car) {
-	if(car.x > 760){
-		car.x = -32
-	}else if(car.x < -40){
-		car.x = 752
 	}
-}
+
+	function addPowerups(){
+		var choose = game.rnd.integerInRange(0,1);
+
+		if(choose >= 0.5){
+	    	addPowerup(game.rnd.integerInRange(10,690), game.rnd.integerInRange(10,460), 'SpeedSign' )
+	    }else{
+	    	addPowerup(game.rnd.integerInRange(10,690), game.rnd.integerInRange(10,460), 'energyDrink');
+
+		};
+	};
+
+
+	function direction(){
+		return Math.floor(Math.random() * 4) + 1;
+	};
+
+	function randSpeed(){
+		return Math.floor(Math.random() * 30) + 30
+	}
+
+	function checkPos(car) {
+		if(car.x > 760){
+			car.x = -32
+		}else if(car.x < -40){
+			car.x = 752
+		}
+	}
 
 
 function update() {
@@ -303,18 +321,18 @@ function speedAlert(player, mark) {
 	mark.kill()
 	cars.forEach(function(item) {
 		if(item.body.velocity.x < 0){
-			item.body.velocity.x = -20;
+			item.body.velocity.x = carSpeedLeft / 2
 		}else{
-			item.body.velocity.x = 20;
+			item.body.velocity.x = carSpeedRight / 2
 		}
 	})
 
 	this.time.events.add(2000, function() {
 		cars.forEach(function(item) {
 			if(item.body.velocity.x < 0){
-				item.body.velocity.x = -30;
+				item.body.velocity.x = carSpeedLeft;
 			}else{
-				item.body.velocity.x = 30;
+				item.body.velocity.x = carSpeedRight;
 			};
 		});
 	});
@@ -334,7 +352,4 @@ function updateText() {
 
 }
 
-// function removePothole(pothole) {
-
-// }
 
