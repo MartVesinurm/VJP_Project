@@ -68,8 +68,8 @@ function create() {
 	for (var i = 0; i < 12; i+=3)
     {
         var car11 = cars.create(i * 70, 159, 'car11');
-		car11.body.immovable = true;
 		car11.body.velocity.x = randSpeed();
+		car11.body.gravity.x = 2;
 		
 		
 	}
@@ -77,8 +77,8 @@ function create() {
 	for (var i = 0; i < 12; i+=3)
     {
         var car12 = cars.create(i * 70, 289, 'car12');
-		car12.body.immovable = true;
 		car12.body.velocity.x = -randSpeed();
+		car12.body.gravity.x = -2;
 		
 	}
 	
@@ -183,11 +183,11 @@ function update() {
 	game.physics.arcade.overlap(player, drinks, energia, null, this);
 	game.physics.arcade.overlap(player, marks, nopeus, null, this);
 	game.physics.arcade.collide(player, cars, die, null, this);
-	game.physics.arcade.collide(cars, cars, slowDown, null, this)
+	game.physics.arcade.collide(cars, cars)
 }
 
 function slowDown(car1, car2) {
-	car2.body.velocity.x -= 10
+	car2.body.velocity.x = car2.body.velocity.x * 0,75
 }
 
 
