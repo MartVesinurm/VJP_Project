@@ -82,11 +82,15 @@ function preload() {
 }
 
 var cars;
-var holes;
+var potholes;
 var marks;
 var drinks;
 var player;
 var playerSpeed = 150;
+var potholesRepaired = 0;
+var timeInterval = 3500;
+
+
 
 function create() {	
 	
@@ -106,22 +110,22 @@ function create() {
 	player.animations.add('left', [117, 118, 119, 120, 121, 122, 123, 124, 125], 10, true);
 	player.animations.add('down', [130, 131, 132, 133, 134, 135, 136, 137, 138], 10, true);
 	
-	for (var i = 0; i < 12; i+=3)
-    {
-        var car11 = cars.create(i * 70, 159, 'car11');
-		car11.body.velocity.x = randSpeed();
-		car11.body.gravity.x = 2;
+	// for (var i = 0; i < 12; i+=3)
+ //    {
+ //        var car11 = cars.create(i * 70, 159, 'car11');
+	// 	car11.body.velocity.x = randSpeed();
+	// 	car11.body.gravity.x = 2;
 		
 		
-	}
+	// }
 
-	for (var i = 0; i < 12; i+=3)
-    {
-        var car12 = cars.create(i * 70, 289, 'car12');
-		car12.body.velocity.x = -randSpeed();
-		car12.body.gravity.x = -2;
+	// for (var i = 0; i < 12; i+=3)
+ //    {
+ //        var car12 = cars.create(i * 70, 289, 'car12');
+	// 	car12.body.velocity.x = -randSpeed();
+	// 	car12.body.gravity.x = -2;
 		
-	}
+	// }
 	
 	marks = game.add.group();
 	marks.enableBody = true;
@@ -134,9 +138,70 @@ function create() {
 	var drink = drinks.create(100, 100, 'mofo');
 
 	// game.input.onTap.add(spawnCar(), this);
+
+	text = game.add.text(650, 24, "Your score is: 0", {
+        font: "24px Arial",
+        fill: "#ff0044",
+        align: "left"
+    });
+
+    text.anchor.setTo(0.5, 0.5);
+
+    timer = game.time.events.loop(timeInterval, addCars, this); 
 	
-	
+	function addOneCar(x, y, sprite, carDir) {
+	    // Create a pipe at the position x and y
+	    var carToAdd = game.add.sprite(x, y, sprite);
+
+	    // Add the pipe to our previously created group
+	    cars.add(carToAdd);
+
+	    // Enable physics on the pipe 
+	    game.physics.arcade.enable(carToAdd);
+
+	    // Add velocity to the pipe to make it move left
+	    if(carDir === 1 || carDir === 2){
+	    	carToAdd.body.velocity.x = 30;
+		}else{
+			carToAdd.body.velocity.x = -30;
+		}
+
+
+	    // Automatically kill the pipe when it's no longer visible 
+	    carToAdd.checkWorldBounds = true;
+	    carToAdd.outOfBoundsKill = true;
+	}
+
+	function addCars() {
+	    // Randomly pick a number between 1 and 4
+	    // This will be the direction car enters
+	    var dir = Math.floor(Math.random() * 4) + 1;
+
+	    // Add the car
+	    // addOneCar(0, 159)
+
+	    if(dir == 1){
+			addOneCar(0, 161, 'car11', dir)
+
+		}else if(dir == 2){
+			addOneCar(0, 290, 'car11', dir)
+
+		}else if(dir == 3){
+			addOneCar(720, 130, 'car12', dir)
+		}else{
+			addOneCar(720, 322, 'car12', dir)
+		}
+
+	     
+	}
+
+
+
+
+
 }
+
+
 
 function direction(){
 	return Math.floor(Math.random() * 4) + 1;
@@ -154,31 +219,6 @@ function checkPos(car) {
 	}
 }
 
-// function spawnCar(){
-// 	var car12 = cars.create(0, 289, 'car12');
-// 		car12.body.immovable = true;
-// 		car12.body.velocity.x = -30;
-// 	// if(dir == 1){
-// 	// 	var car11 = cars.add(0, 159, 'car11');
-// 	// 	car11.body.immovable = true;
-// 	// 	car11.body.velocity.x = 30;
-
-// 	// }else if(dir == 2){
-// 	// 	var car11 = cars.add(0, 259, 'car11');
-// 	// 	car11.body.immovable = true;
-// 	// 	car11.body.velocity.x = 30;
-
-// 	// }else if(dir == 3){
-// 	// 	var car12 = cars.add(720, 289, 'car12');
-// 	// 	car12.body.immovable = true;
-// 	// 	car12.body.velocity.x = -30;
-
-// 	// }else{
-// 	// 	var car12 = cars.add(720, 319, 'car12');
-// 	// 	car12.body.immovable = true;
-// 	// 	car12.body.velocity.x = -30;
-// 	// }
-// };
 
 function update() {
 	
@@ -220,11 +260,18 @@ function update() {
 
         player.frame = 26;
     }
+
+
+
+    updateText();
 	
 	game.physics.arcade.overlap(player, drinks, energia, null, this);
 	game.physics.arcade.overlap(player, marks, nopeus, null, this);
-	game.physics.arcade.collide(player, cars, die, null, this);
+	game.physics.arcade.overlap(player, cars, die, null, this);
 	game.physics.arcade.collide(cars, cars)
+
+	potholesRepaired = cars.countLiving();
+
 }
 
 function slowDown(car1, car2) {
@@ -236,7 +283,7 @@ function die(player, cars) {
 	player.frame = 278;
 	player.body.x = 32;
 	player.body.y = game.world.height - 150;
-}
+};
 
 function energia(player, drink) {
 	drink.kill()
@@ -249,3 +296,12 @@ function nopeus(player, mark) {
 		item.body.velocity.x = 40;
 	})
 }
+
+
+
+function updateText() {
+
+    text.setText("Score:" + potholesRepaired);
+
+}
+
