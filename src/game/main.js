@@ -251,29 +251,39 @@ function update() {
 	game.physics.arcade.overlap(player, cars, die, null, this);
 	game.physics.arcade.overlap(player, potholes, updateScore, null, this)
 	game.physics.arcade.collide(cars, cars)
+	game.physics.arcade.overlap(cars, potholes, reduceScore, null, this)
 
 }
 
-function slowDown(car1, car2) {
-	car2.body.velocity.x = car2.body.velocity.x * 0,75
-}
-
-
-function die(player, cars) {
+function die(player, car) {
 	player.frame = 278;
 	player.body.velocity.x = 150;
 	player.body.x = game.world.width / 2;
 	player.body.y = game.world.height / 2;
 	potholesRepaired = 0;
+	cars.forEach(function(item) {
+		item.kill();
+	});
+	marks.forEach(function(item) {
+		item.kill();
+	});
+	drinks.forEach(function(item) {
+		item.kill();
+	});
+	potholes.forEach(function(item) {
+		item.kill();
+	});
 };
 
 function energyBoost(player, drink) {
 	drink.kill()
+	if(playerSpeed == 150) {
 	playerSpeed = playerSpeed * 2;
 
 	this.time.events.add(2000, function() {
 		playerSpeed = playerSpeed * 0.5;
 	});
+	}
 }
 
 function speedAlert(player, mark) {
@@ -298,16 +308,18 @@ function speedAlert(player, mark) {
 }
 
 
-
+function reduceScore(car, pothole) {
+	potholesRepaired -= 0.1
+}
 function updateScore(player, pothole){
 	pothole.kill()
-	potholesRepaired ++
+	potholesRepaired += 50
 }
 
 
 function updateText() {
 
-    text.setText("Score: " + potholesRepaired);
+    text.setText("Score: " + Math.floor(potholesRepaired));
 
 }
 
