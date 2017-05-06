@@ -163,11 +163,15 @@ function create() {
 
 	function addPowerup(x,y,type){
 		if(type == 'SpeedSign'){
+			if(marks.length < 2) {
 			var mark = game.add.sprite(x, y, 'SpeedSign');
 			marks.add(mark);
+			}
 		}else if(type == 'energyDrink'){
+			if(drinks.length < 2) {
 			var drink = game.add.sprite(x, y, 'energyDrink')
 			drinks.add(drink);
+			}
 		}
 
 	}
@@ -309,7 +313,7 @@ function speedAlert(player, mark) {
 
 
 function reduceScore(car, pothole) {
-	potholesRepaired -= 0.1
+	potholesRepaired -= 0.5
 }
 function updateScore(player, pothole){
 	pothole.kill()
