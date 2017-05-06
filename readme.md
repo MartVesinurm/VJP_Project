@@ -2,7 +2,7 @@
 
 This is a simple game project made for Aalto University course.
 
-Game is build with following technologies:
+Game is built with following technologies:
 *   **Phaser** for accelerated game development
 *   **Node.js** for installing npm dependencies and hosting Phaser
 *   **Grunt** for automating build tasks and compiling the game
@@ -18,6 +18,9 @@ Game is build with following technologies:
 ## Instructions on running the game
 * 	Git clone or download project as .zip
 * 	Open the game folder in terminal 
+* 	Install two packages in order to run the project:
+	<pre lang="javascript">> npm install -g grunt-cli</pre>
+	<pre lang="javascript">> npm install</pre>
 * 	Run game using command **'grunt'**
 * 	Enjoy
 
