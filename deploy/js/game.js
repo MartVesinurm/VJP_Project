@@ -146,7 +146,7 @@ function create() {
 	    if(carDir === 1 || carDir === 2){
 	    	carToAdd.body.velocity.x = carSpeedRight;
 		}else{
-			carToAdd.body.velocity.x = -carSpeedLeft;
+			carToAdd.body.velocity.x = carSpeedLeft;
 		}
 
 
