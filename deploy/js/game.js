@@ -101,7 +101,7 @@ function create() {
 	potholes = game.add.group();
 	cars.enableBody = true;
 	
-	player = game.add.sprite(32, game.world.height - 150, 'dude');
+	player = game.add.sprite(game.world.width / 2, game.world.height / 2, 'dude');
 	game.physics.arcade.enable(player);
 	player.body.collideWorldBounds = true;
 	
@@ -109,23 +109,7 @@ function create() {
     player.animations.add('right', [143, 144, 145, 146, 147, 148, 149, 150, 151], 10, true);
 	player.animations.add('left', [117, 118, 119, 120, 121, 122, 123, 124, 125], 10, true);
 	player.animations.add('down', [130, 131, 132, 133, 134, 135, 136, 137, 138], 10, true);
-	
-	// for (var i = 0; i < 12; i+=3)
- //    {
- //        var car11 = cars.create(i * 70, 159, 'car11');
-	// 	car11.body.velocity.x = randSpeed();
-	// 	car11.body.gravity.x = 2;
-		
-		
-	// }
 
-	// for (var i = 0; i < 12; i+=3)
- //    {
- //        var car12 = cars.create(i * 70, 289, 'car12');
-	// 	car12.body.velocity.x = -randSpeed();
-	// 	car12.body.gravity.x = -2;
-		
-	// }
 	
 	marks = game.add.group();
 	marks.enableBody = true;
@@ -137,17 +121,16 @@ function create() {
 	drinks.enableBody = true;
 	var drink = drinks.create(100, 100, 'mofo');
 
-	// game.input.onTap.add(spawnCar(), this);
-
-	text = game.add.text(650, 24, "Your score is: 0", {
+	text = game.add.text(665, 24, "Score: 0", {
         font: "24px Arial",
-        fill: "#ff0044",
+        fill: "#ffffff",
         align: "left"
     });
 
     text.anchor.setTo(0.5, 0.5);
 
     timer = game.time.events.loop(timeInterval, addCars, this); 
+    potholeTimer = game.time.events.loop(5000, addPotholes, this); 
 	
 	function addOneCar(x, y, sprite, carDir) {
 	    // Create a pipe at the position x and y
@@ -196,11 +179,32 @@ function create() {
 	}
 
 
+	function addPothole(x, y) {
+	    // Create a pipe at the position x and y
+	    var potholeToAdd = game.add.sprite(x, y, 'pothole');
 
+	    // Add the pipe to our previously created group
+	    potholes.add(potholeToAdd);
 
+	    // Enable physics on the pipe 
+	    game.physics.arcade.enable(potholeToAdd);
+
+	}
+
+	function addPotholes() {
+	    // Randomly pick a number between 1 and 2
+	    // This will select upper or lower road
+	    var upOrDown = game.rnd.integerInRange(0,1);
+
+	    if(upOrDown >= 0.5){
+	    	addPothole(game.rnd.integerInRange(10,690), game.rnd.integerInRange(130,170) )
+	    }else{
+	    	addPothole(game.rnd.integerInRange(10,690), game.rnd.integerInRange(290,300) )
+	    }
+	     
+	}
 
 }
-
 
 
 function direction(){
@@ -262,15 +266,14 @@ function update() {
     }
 
 
-
+    game.world.bringToTop(cars);
     updateText();
 	
-	game.physics.arcade.overlap(player, drinks, energia, null, this);
-	game.physics.arcade.overlap(player, marks, nopeus, null, this);
+	game.physics.arcade.overlap(player, drinks, energyBoost, null, this);
+	game.physics.arcade.overlap(player, marks, speedAlert, null, this);
 	game.physics.arcade.overlap(player, cars, die, null, this);
+	game.physics.arcade.overlap(player, potholes, updateScore, null, this)
 	game.physics.arcade.collide(cars, cars)
-
-	potholesRepaired = cars.countLiving();
 
 }
 
@@ -281,27 +284,57 @@ function slowDown(car1, car2) {
 
 function die(player, cars) {
 	player.frame = 278;
-	player.body.x = 32;
-	player.body.y = game.world.height - 150;
+	player.body.velocity.x = 150;
+	player.body.x = game.world.width / 2;
+	player.body.y = game.world.height / 2;
+	potholesRepaired = 0;
 };
 
-function energia(player, drink) {
+function energyBoost(player, drink) {
 	drink.kill()
 	playerSpeed = playerSpeed * 2;
+
+	this.time.events.add(2000, function() {
+		playerSpeed = playerSpeed * 0.5;
+	});
 }
 
-function nopeus(player, mark) {
+function speedAlert(player, mark) {
 	mark.kill()
 	cars.forEach(function(item) {
-		item.body.velocity.x = 40;
+		if(item.body.velocity.x < 0){
+			item.body.velocity.x = -20;
+		}else{
+			item.body.velocity.x = 20;
+		}
 	})
+
+	this.time.events.add(2000, function() {
+		cars.forEach(function(item) {
+			if(item.body.velocity.x < 0){
+				item.body.velocity.x = -30;
+			}else{
+				item.body.velocity.x = 30;
+			};
+		});
+	});
 }
 
+
+
+function updateScore(player, pothole){
+	pothole.kill()
+	potholesRepaired ++
+}
 
 
 function updateText() {
 
-    text.setText("Score:" + potholesRepaired);
+    text.setText("Score: " + potholesRepaired);
 
 }
+
+// function removePothole(pothole) {
+
+// }
 
