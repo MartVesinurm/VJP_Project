@@ -1,3 +1,3 @@
 @echo off
-Title Project running
+Title Project running with Grunt
 grunt
