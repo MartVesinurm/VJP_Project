@@ -42,7 +42,6 @@ n.cssHooks[b]=Ua(l.pixelPosition,function(a,c){return c?(c=Sa(a,b),Oa.test(c)?n(
 
 var game = new Phaser.Game(720, 480, Phaser.AUTO, '', { preload: preload, create: create, update: update });
 
-var gameState = {
 
 function preload() {
 	game.load.image('background1', 'assets/pictures/background1.png');
@@ -135,6 +134,8 @@ function create() {
     timer = game.time.events.loop(timeInterval, addCars, this); 
     potholeTimer = game.time.events.loop(5000, addPotholes, this); 
     powerupTimer = game.time.events.loop(8000, addPowerups, this);
+	
+	drawMenu()
 
 }
 	
@@ -373,5 +374,15 @@ function updateText() {
 
     text.setText("Score: " + Math.floor(potholesRepaired));
 
+}
+
+var buttons;
+buttons = game.add.group();
+
+function drawMenu() {
+	game.add.sprite(0,0, 'menubg')
+	buttons = game.add.button(game.world.centerX - 95, 150, 'pelaa', die, this, 2, 1, 0);
+	buttons = game.add.button(game.world.centerX - 95, 250, 'ohjeet', die, this, 2, 1, 0);
+	buttons = game.add.button(game.world.centerX - 95, 350, 'tietoa', die, this, 2, 1, 0);
 }
 
