@@ -1,6 +1,7 @@
 
 var game = new Phaser.Game(720, 480, Phaser.AUTO, '', { preload: preload, create: create, update: update });
 
+var gameState = {
 
 function preload() {
 	game.load.image('background1', 'assets/pictures/background1.png');
@@ -35,6 +36,11 @@ function preload() {
 
     game.load.image('car81', 'assets/pictures/cars/car8_1.png');
     game.load.image('car82', 'assets/pictures/cars/car8_2.png');
+	
+	game.load.image('menubg', 'assets/pictures/menu/menu.png');
+	game.load.image('ohjeet', 'assets/pictures/menu/OHJEET.png');
+	game.load.image('pelaa', 'assets/pictures/menu/PELAA.png');
+	game.load.image('tietoa', 'assets/pictures/menu/TIETOA.png');
 	
 	
     game.load.spritesheet('dude', 'assets/pictures/character.png', 32, 32);
@@ -87,7 +93,7 @@ function create() {
 
     timer = game.time.events.loop(timeInterval, addCars, this); 
     potholeTimer = game.time.events.loop(5000, addPotholes, this); 
-    powerupTimer = game.time.events.loop(8000, addPowerups, this); 
+    powerupTimer = game.time.events.loop(8000, addPowerups, this);
 
 }
 	
@@ -257,6 +263,7 @@ function update() {
 	game.physics.arcade.collide(cars, cars)
 	game.physics.arcade.overlap(cars, potholes, reduceScore, null, this)
 
+
 }
 
 function die(player, car) {
@@ -326,5 +333,3 @@ function updateText() {
     text.setText("Score: " + Math.floor(potholesRepaired));
 
 }
-
-
