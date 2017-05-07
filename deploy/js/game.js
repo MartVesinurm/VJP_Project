@@ -376,12 +376,20 @@ function updateText() {
 
 }
 
+
+//Testi funktio
+function dieAll() {
+	cars.forEach(function(item) {
+		item.kill();
+	});
+}
+
 var buttons;
 buttons = game.add.group();
 
 function drawMenu() {
 	game.add.sprite(0,0, 'menubg')
-	buttons = game.add.button(game.world.centerX - 95, 150, 'pelaa', die, this, 2, 1, 0);
+	buttons = game.add.button(game.world.centerX - 95, 150, 'pelaa', dieAll, this, 2, 1, 0);
 	buttons = game.add.button(game.world.centerX - 95, 250, 'ohjeet', die, this, 2, 1, 0);
 	buttons = game.add.button(game.world.centerX - 95, 350, 'tietoa', die, this, 2, 1, 0);
 }
