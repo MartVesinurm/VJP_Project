@@ -3,6 +3,9 @@ var level3State = {
 
 	create: function(){
 		
+		level2music.mute = true;
+		level3music.loopFull();
+		
 		timeInterval = 1000;
 		carSpeedLeft = -100;
 		carSpeedRight = 100;

@@ -1,7 +1,19 @@
 var menuState = {
 
 	create: function() {
+		
+		menumusic = game.add.audio('menu_level')
+		level1music = game.add.audio('level1');
+		level2music = game.add.audio('level2');
+		level3music = game.add.audio('level3');
+		winmusic = game.add.audio('win');
+		losemusic = game.add.audio('lose');
+		
+		
+		menumusic = game.add.audio('level_menu');
+		menumusic.loopFull()
 
+		
 		game.add.sprite(0, 0, 'backgroundMenu');
 
 		game.load.image(game.world.width / 2-95, 175, 'playGame' );

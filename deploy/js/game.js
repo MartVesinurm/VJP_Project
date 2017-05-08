@@ -81,6 +81,18 @@ var loadState = {
 
 	    game.load.image('car81', 'assets/pictures/cars/car8_1.png');
 	    game.load.image('car82', 'assets/pictures/cars/car8_2.png');
+		
+		game.load.audio('car_pass', 'assets/audio/car_pass.wav');
+		game.load.audio('car_whoor', 'assets/audio/car_whoor.wav');
+		game.load.audio('fail', 'assets/audio/fail.wav');
+		game.load.audio('hit', 'assets/audio/hit.wav');
+		game.load.audio('level_menu', 'assets/audio/level_menu_.wav');
+		game.load.audio('level1', 'assets/audio/level1.wav');
+		game.load.audio('level2', 'assets/audio/level2.wav');
+		game.load.audio('level3', 'assets/audio/level3.mp3');
+		game.load.audio('lose', 'assets/audio/lose.wav');
+		game.load.audio('menu', 'assets/audio/menu.mp3');
+		game.load.audio('win', 'assets/audio/win.wav');
 
 		
 	},
@@ -95,7 +107,19 @@ var loadState = {
 var menuState = {
 
 	create: function() {
+		
+		menumusic = game.add.audio('menu_level')
+		level1music = game.add.audio('level1');
+		level2music = game.add.audio('level2');
+		level3music = game.add.audio('level3');
+		winmusic = game.add.audio('win');
+		losemusic = game.add.audio('lose');
+		
+		
+		menumusic = game.add.audio('level_menu');
+		menumusic.loopFull()
 
+		
 		game.add.sprite(0, 0, 'backgroundMenu');
 
 		game.load.image(game.world.width / 2-95, 175, 'playGame' );
@@ -183,7 +207,10 @@ var level1State = {
 
 
 	create: function(){
-
+		
+		menumusic.mute = true;
+		level1music.loopFull()
+		
 		level = 1;
 		timeInterval = 1500;
 		carSpeedLeft = -50;
@@ -223,8 +250,6 @@ var level1State = {
 	    potholeTimer = game.time.events.loop(5000, addPotholes, this); 
 	    powerupTimer = game.time.events.loop(8000, addPowerups, this); 
 
-	    buttonMuteMusic = game.add.button(600, 420, 'ui-musicOn', music, this);
-	    buttonMuteSound = game.add.button(660, 420, 'ui-soundOn', sound, this);
 
 	    
 	},
@@ -305,6 +330,9 @@ var level2State = {
 
 
 	create: function(){
+		
+		level1music.mute = true;
+		level2music.loopFull()
 		
 		timeInterval = 1500;
 		carSpeedLeft = -60;
@@ -424,6 +452,9 @@ var level3State = {
 
 	create: function(){
 		
+		level2music.mute = true;
+		level3music.loopFull();
+		
 		timeInterval = 1000;
 		carSpeedLeft = -100;
 		carSpeedRight = 100;
@@ -540,6 +571,10 @@ var level3State = {
 var winState = {
 
 	create: function() {
+		
+		level3music.mute = true;
+		winmusic.mute = false;
+		winmusic.loopFull()
 		var winLabel = game.add.text(89, 89, 'YOU WON!',
 									{font: '50px Arial', fill: '#00FF00'} );
 
@@ -552,12 +587,22 @@ var winState = {
 	},
 
 	restart: function() {
+		winmusic.mute = true;
 		game.state.start('menu');
 	},
 }
 var loseState = {
 
 	create: function() {
+		
+		level1music.mute = true;
+		level2music.mute = true;
+		level3music.mute = true;
+		winmusic.mute = true;
+		
+		losemusic = game.add.audio('lose');
+		losemusic.play()
+		
 		var winLabel = game.add.text(89, 89, 'YOU LOST!',
 									{font: '50px Arial', fill: '#00FF00'} );
 

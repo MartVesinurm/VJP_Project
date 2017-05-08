@@ -67,6 +67,18 @@ var loadState = {
 
 	    game.load.image('car81', 'assets/pictures/cars/car8_1.png');
 	    game.load.image('car82', 'assets/pictures/cars/car8_2.png');
+		
+		game.load.audio('car_pass', 'assets/audio/car_pass.wav');
+		game.load.audio('car_whoor', 'assets/audio/car_whoor.wav');
+		game.load.audio('fail', 'assets/audio/fail.wav');
+		game.load.audio('hit', 'assets/audio/hit.wav');
+		game.load.audio('level_menu', 'assets/audio/level_menu_.wav');
+		game.load.audio('level1', 'assets/audio/level1.wav');
+		game.load.audio('level2', 'assets/audio/level2.wav');
+		game.load.audio('level3', 'assets/audio/level3.mp3');
+		game.load.audio('lose', 'assets/audio/lose.wav');
+		game.load.audio('menu', 'assets/audio/menu.mp3');
+		game.load.audio('win', 'assets/audio/win.wav');
 
 		
 	},

@@ -1,6 +1,15 @@
 var loseState = {
 
 	create: function() {
+		
+		level1music.mute = true;
+		level2music.mute = true;
+		level3music.mute = true;
+		winmusic.mute = true;
+		
+		losemusic = game.add.audio('lose');
+		losemusic.play()
+		
 		var winLabel = game.add.text(89, 89, 'YOU LOST!',
 									{font: '50px Arial', fill: '#00FF00'} );
 
