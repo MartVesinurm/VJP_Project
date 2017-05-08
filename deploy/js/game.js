@@ -173,11 +173,12 @@ var menuCreditsState = {
     var potholesRepaired = 0;
     var timeInterval = 1500;
     var player;
-	var vehicles;
+    var soundOn = true;
+    var musicOn = true;
 	var levelBuffer;
 	var index; //Indeksi satunnaisen autokuvan generoimisieen
 	var level;
-    
+
 
 var level1State = {
 
@@ -222,8 +223,19 @@ var level1State = {
 	    timer = game.time.events.loop(timeInterval, spawnLevel1, this); 
 	    potholeTimer = game.time.events.loop(5000, addPotholes, this); 
 	    powerupTimer = game.time.events.loop(8000, addPowerups, this); 
+
+	    buttonMuteMusic = game.add.button(600, 420, 'ui-musicOn', this.music, this, 2, 1, 0);
+	    buttonMuteSound = game.add.button(660, 420, 'ui-soundOn', this.sound, this, 2, 1, 0);
 	
 	},
+
+	sound: function(){
+
+	}
+
+	music: function(){
+
+	}
 
 	update: function() {
 		var cursors = game.input.keyboard.createCursorKeys();
