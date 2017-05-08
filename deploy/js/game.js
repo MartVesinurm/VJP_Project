@@ -336,7 +336,7 @@ var level1State = {
 
 
 	function die(player, car) {
-		game.state.start('menu');
+		game.state.start('lose');
 	};
 
 	function energyBoost(player, drink) {
@@ -613,7 +613,7 @@ var level2State = {
 
 
 	function die(player, car) {
-		game.state.start('menu');
+		game.state.start('lose');
 	};
 
 	function energyBoost(player, drink) {
@@ -889,7 +889,7 @@ var level3State = {
 
 
 	function die(player, car) {
-		game.state.start('menu');
+		game.state.start('lose');
 	};
 
 	function energyBoost(player, drink) {
@@ -963,6 +963,24 @@ var winState = {
 		game.state.start('menu');
 	},
 }
+var loseState = {
+
+	create: function() {
+		var winLabel = game.add.text(89, 89, 'YOU LOST!',
+									{font: '50px Arial', fill: '#00FF00'} );
+
+		var startLabel = game.add.text(80, game.world.heigth-80,
+									   'press the button to restart',
+									   {font: '25px Arial', fill: '#ffffff'});
+
+		game.load.image(game.world.width / 2-95, 175, 'playGame' );
+		buttonPlay = game.add.button(game.world.width / 2-95 , 175, 'playGame', this.restart, this, 2, 1, 0);
+	},
+
+	restart: function() {
+		game.state.start('menu');
+	},
+}
 //Create a new game
 var game = new Phaser.Game(720, 480, Phaser.AUTO, 'gameDiv');
 
@@ -974,6 +992,7 @@ game.state.add('menu', menuState);
 game.state.add('level1', level1State);
 game.state.add('level2', level2State);
 game.state.add('level3', level3State);
+game.state.add('lose', loseState)
 game.state.add('win', winState);
 
 // Start game

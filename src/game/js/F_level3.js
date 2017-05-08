@@ -218,7 +218,7 @@ var level3State = {
 
 
 	function die(player, car) {
-		game.state.start('menu');
+		game.state.start('lose');
 	};
 
 	function energyBoost(player, drink) {
