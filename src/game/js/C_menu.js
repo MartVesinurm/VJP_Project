@@ -19,11 +19,11 @@ var menuState = {
 	},
 
 	help: function() {
-		// game.state.start('level2');
+		game.state.start('menuHelp');
 	},
 
 	info: function()  {
-		// game.state.start('level3');
+		game.state.start('menuCredits');
 	},
 	
 }

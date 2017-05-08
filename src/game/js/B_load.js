@@ -11,10 +11,29 @@ var loadState = {
 		game.load.image('background2', 'assets/pictures/background2.png');
 		game.load.image('background3', 'assets/pictures/background3.png');
 
+
+		//Load menu items
 		game.load.image('backgroundMenu', 'assets/pictures/menu/menu.png');
 		game.load.image('instructions', 'assets/pictures/menu/OHJEET.png');
 		game.load.image('playGame', 'assets/pictures/menu/PELAA.png');
 		game.load.image('information', 'assets/pictures/menu/TIETOA.png');
+		game.load.image('more', 'assets/pictures/menu/more.png')
+
+		game.load.image('backgroundOhjeet', 'assets/pictures/menu/menu_ohjeet.png');
+		game.load.image('backgroundTietoa', 'assets/pictures/menu/menu_credits.png');
+
+		//Load UI sprites
+		game.load.image('ui-soundOn', '/assets/pictures/UI-sprites/flatDark12.png');
+		game.load.image('ui-pause', '/assets/pictures/UI-sprites/flatDark13.png');
+		game.load.image('ui-soundOff', '/assets/pictures/UI-sprites/flatDark14.png');
+		game.load.image('ui-play', '/assets/pictures/UI-sprites/flatDark15.png');
+		game.load.image('ui-musicOn', '/assets/pictures/UI-sprites/flatDark16.png');
+		game.load.image('ui-musicOff', '/assets/pictures/UI-sprites/flatDark18.png');
+		game.load.image('ui-settings', '/assets/pictures/UI-sprites/flatDark21.png');
+		game.load.image('ui-check', '/assets/pictures/UI-sprites/flatDark22.png');
+		game.load.image('ui-menu', '/assets/pictures/UI-sprites/flatDark32.png');
+		game.load.image('ui-cross', '/assets/pictures/UI-sprites/flatDark34.png');
+		
 		
 		//Load powerups
 	    game.load.image('energyDrink', 'assets/pictures/möfö.png');
