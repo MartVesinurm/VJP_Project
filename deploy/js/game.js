@@ -570,21 +570,21 @@ game.state.start('boot');
 	    // addOneCar(0, 159)
 
 	    if(dir == 1){
-			addOneCar(0, 82, 'car12', dir)
+			addOneCar(720, 115, 'car12', dir)
 		}else if(dir == 3){
-			addOneCar(0, 122, 'car12', dir)
+			addOneCar(720, 144, 'car12', dir)
 		}else if(dir == 2){
-			addOneCar(720, 160, 'car12', dir)
+			addOneCar(0, 179, 'car11', dir)
 		}else if(dir == 4){
-			addOneCar(720, 304, 'car11', dir)
+			addOneCar(0, 208, 'car11', dir)
 		}else if(dir == 5){
-			addOneCar(720, 347, 'car12', dir)
+			addOneCar(720, 322, 'car12', dir)
 		}else if(dir == 7){
-			addOneCar(720,384, 'car12', dir)
+			addOneCar(720, 354, 'car12', dir)
 		}else if(dir == 6){
-			addOneCar(720, 347, 'car11', dir)
+			addOneCar(0, 386, 'car11', dir)
 		}else 
-			addOneCar(720, 347, 'car11', dir)
+			addOneCar(0, 416, 'car11', dir)
 
 	     
 	};
