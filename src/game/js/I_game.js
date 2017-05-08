@@ -318,3 +318,19 @@ game.state.start('boot');
 	    text.setText("Score: " + Math.floor(potholesRepaired));
 
 	};
+
+	function music(){
+		if(soundOn){
+			buttonMuteMusic = game.add.button(600, 420, 'ui-musicOn', this.music, this, 2, 1, 0);
+		}else{
+			buttonMuteMusic = game.add.button(600, 420, 'ui-musicOff', this.music, this, 2, 1, 0);
+		}
+	};
+
+	function sound(){
+		if(soundOn){
+			buttonMuteSound = game.add.button(660, 420, 'ui-soundOn', this.sound, this, 2, 1, 0);
+		}else{
+			buttonMuteSound = game.add.button(660, 420, 'ui-soundOff', this.sound, this, 2, 1, 0);
+		}
+	};

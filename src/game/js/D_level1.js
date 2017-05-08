@@ -14,7 +14,6 @@
 	var index; //Indeksi satunnaisen autokuvan generoimisieen
 	var level;
 
-
 var level1State = {
 
 
@@ -59,18 +58,9 @@ var level1State = {
 	    potholeTimer = game.time.events.loop(5000, addPotholes, this); 
 	    powerupTimer = game.time.events.loop(8000, addPowerups, this); 
 
-	    buttonMuteMusic = game.add.button(600, 420, 'ui-musicOn', this.music, this, 2, 1, 0);
-	    buttonMuteSound = game.add.button(660, 420, 'ui-soundOn', this.sound, this, 2, 1, 0);
-	
+	    
 	},
 
-	sound: function(){
-
-	}
-
-	music: function(){
-
-	}
 
 	update: function() {
 		var cursors = game.input.keyboard.createCursorKeys();
@@ -131,6 +121,9 @@ var level1State = {
 		if(potholesRepaired < -1000) {
 			die(player)
 		}
+
+		this.sound();
+		this.music();
 
 	},
 
