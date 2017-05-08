@@ -1,15 +1,14 @@
 var loseState = {
 
 	create: function() {
-		var winLabel = game.add.text(89, 89, 'YOU LOST!',
-									{font: '50px Arial', fill: '#00FF00'} );
 
-		var startLabel = game.add.text(80, game.world.heigth-80,
-									   'press the button to restart',
+		game.add.sprite(0, 0, 'loseScreen');
+
+		var startLabel = game.add.text(game.world.width/ 2 - 120, 10,
+									   'klikkaa ruutua jatkaaksesi',
 									   {font: '25px Arial', fill: '#ffffff'});
-		potholesRepaired = 0;
-		game.load.image(game.world.width / 2-95, 175, 'playGame' );
-		buttonPlay = game.add.button(game.world.width / 2-95 , 175, 'playGame', this.restart, this, 2, 1, 0);
+
+		game.input.onTap.add(this.restart, this);
 	},
 
 	restart: function() {
