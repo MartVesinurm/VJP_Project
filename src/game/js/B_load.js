@@ -31,12 +31,9 @@ var loadState = {
 		game.load.image('loseScreen', 'assets/pictures/lose.png');
 
 		//Load UI sprites
-		game.load.image('ui-soundOn', '/assets/pictures/UI-sprites/flatDark12.png');
+		game.load.spritesheet('soundOnOff','assets/pictures/UI-sprites/soundOnOff.png', 48, 48, 2, 5, 10);
 		game.load.image('ui-pause', '/assets/pictures/UI-sprites/flatDark13.png');
-		game.load.image('ui-soundOff', '/assets/pictures/UI-sprites/flatDark14.png');
 		game.load.image('ui-play', '/assets/pictures/UI-sprites/flatDark15.png');
-		game.load.image('ui-musicOn', '/assets/pictures/UI-sprites/flatDark16.png');
-		game.load.image('ui-musicOff', '/assets/pictures/UI-sprites/flatDark18.png');
 		game.load.image('ui-settings', '/assets/pictures/UI-sprites/flatDark21.png');
 		game.load.image('ui-check', '/assets/pictures/UI-sprites/flatDark22.png');
 		game.load.image('ui-menu', '/assets/pictures/UI-sprites/flatDark32.png');

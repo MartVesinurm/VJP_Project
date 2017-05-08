@@ -8,8 +8,6 @@
     var potholesRepaired = 0;
     var timeInterval = 1500;
     var player;
-    var soundOn = true;
-    var musicOn = true;
 	var levelBuffer;
 	var index; //Indeksi satunnaisen autokuvan generoimisieen
 	var level;
@@ -61,8 +59,30 @@ var level1State = {
 	    potholeTimer = game.time.events.loop(5000, addPotholes, this); 
 	    powerupTimer = game.time.events.loop(8000, addPowerups, this); 
 
+		        //Adding the mute-button
+	    this.musicToggle = this.game.add.button(this.game.world.width - 70, 420, 'soundOnOff', this.toggleMusic, this);
+	    
+	    //Changing the correct frame of the mute-buttons spritesheet.
+	    if (this.game.sound.mute) {
+	      this.musicToggle.frame = 1;
+	    } else {
+	      this.musicToggle.frame = 0;
+	    }
+
+
+
 
 	    
+	},
+
+	toggleMusic: function() {	
+		if (this.game.sound.mute) {
+			this.game.sound.mute = false;
+			this.musicToggle.frame = 0;
+		 } else {
+			this.game.sound.mute = true;
+			this.musicToggle.frame = 1;
+		 }
 	},
 
 
@@ -104,7 +124,7 @@ var level1State = {
 		}
 
 
-	    if(potholesRepaired > 10){
+	    if(potholesRepaired > 1){
 	    	potholesRepaired = 0
 	    	game.state.start('level2');
 	    }

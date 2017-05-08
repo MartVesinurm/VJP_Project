@@ -45,12 +45,9 @@ var loadState = {
 		game.load.image('loseScreen', 'assets/pictures/lose.png');
 
 		//Load UI sprites
-		game.load.image('ui-soundOn', '/assets/pictures/UI-sprites/flatDark12.png');
+		game.load.spritesheet('soundOnOff','assets/pictures/UI-sprites/soundOnOff.png', 48, 48, 2, 5, 10);
 		game.load.image('ui-pause', '/assets/pictures/UI-sprites/flatDark13.png');
-		game.load.image('ui-soundOff', '/assets/pictures/UI-sprites/flatDark14.png');
 		game.load.image('ui-play', '/assets/pictures/UI-sprites/flatDark15.png');
-		game.load.image('ui-musicOn', '/assets/pictures/UI-sprites/flatDark16.png');
-		game.load.image('ui-musicOff', '/assets/pictures/UI-sprites/flatDark18.png');
 		game.load.image('ui-settings', '/assets/pictures/UI-sprites/flatDark21.png');
 		game.load.image('ui-check', '/assets/pictures/UI-sprites/flatDark22.png');
 		game.load.image('ui-menu', '/assets/pictures/UI-sprites/flatDark32.png');
@@ -113,11 +110,16 @@ var loadState = {
 
 
 
+    var soundOn = true;
+    var musicOn = true;
+    var musicToggle;
+
 var menuState = {
 
 	create: function() {
 		
-		menumusic = game.add.audio('menu_level')
+		game.add.sprite(0, 0, 'backgroundMenu');
+
 		level1music = game.add.audio('level1');
 		level2music = game.add.audio('level2');
 		level3music = game.add.audio('level3');
@@ -125,20 +127,37 @@ var menuState = {
 		losemusic = game.add.audio('lose');
 		
 		
-		menumusic = game.add.audio('level_menu');
-		menumusic.loopFull()
+	menumusic = game.add.audio('level_menu');
+	menumusic.loopFull();
 
-		
-		game.add.sprite(0, 0, 'backgroundMenu');
+    //Adding the mute-button
+    this.musicToggle = this.game.add.button(this.game.world.width - 70, 420, 'soundOnOff', this.toggleMusic, this);
+    
+    //Changing the correct frame of the mute-buttons spritesheet.
+    if (this.game.sound.mute) {
+      this.musicToggle.frame = 1;
+    } else {
+      this.musicToggle.frame = 0;
+    }
 
-		game.load.image(game.world.width / 2-95, 175, 'playGame' );
-		game.load.image(game.world.width / 2-95, 250, 'instructions' );
-		game.load.image(game.world.width / 2-95, 325, 'information' );
+	game.load.image(game.world.width / 2-95, 175, 'playGame' );
+	game.load.image(game.world.width / 2-95, 250, 'instructions' );
+	game.load.image(game.world.width / 2-95, 325, 'information' );
 
-		buttonPlay = game.add.button(game.world.width / 2-95 , 175, 'playGame', this.start, this, 2, 1, 0);
-		buttonInstructions = game.add.button(game.world.width / 2-95 , 250, 'instructions', this.help, this, 2, 1, 0);
-		buttonInfo = game.add.button(game.world.width / 2-95 , 325, 'information', this.info, this, 2, 1, 0);
+	buttonPlay = game.add.button(game.world.width / 2-95 , 175, 'playGame', this.start, this, 2, 1, 0);
+	buttonInstructions = game.add.button(game.world.width / 2-95 , 250, 'instructions', this.help, this, 2, 1, 0);
+	buttonInfo = game.add.button(game.world.width / 2-95 , 325, 'information', this.info, this, 2, 1, 0);
 
+	},
+  
+	toggleMusic: function() {	
+	        	if (this.game.sound.mute) {
+	        		this.game.sound.mute = false;
+	        		this.musicToggle.frame = 0;
+	        	} else {
+	        		this.game.sound.mute = true;
+	        		this.musicToggle.frame = 1;
+	        	}
 	},
 
 	start: function() {
@@ -153,7 +172,7 @@ var menuState = {
 		game.state.start('menuCredits');
 	},
 	
-}
+};
 var menuHelpState = {
 
 	create: function() {
@@ -206,8 +225,6 @@ var menuCreditsState = {
     var potholesRepaired = 0;
     var timeInterval = 1500;
     var player;
-    var soundOn = true;
-    var musicOn = true;
 	var levelBuffer;
 	var index; //Indeksi satunnaisen autokuvan generoimisieen
 	var level;
@@ -259,8 +276,30 @@ var level1State = {
 	    potholeTimer = game.time.events.loop(5000, addPotholes, this); 
 	    powerupTimer = game.time.events.loop(8000, addPowerups, this); 
 
+		        //Adding the mute-button
+	    this.musicToggle = this.game.add.button(this.game.world.width - 70, 420, 'soundOnOff', this.toggleMusic, this);
+	    
+	    //Changing the correct frame of the mute-buttons spritesheet.
+	    if (this.game.sound.mute) {
+	      this.musicToggle.frame = 1;
+	    } else {
+	      this.musicToggle.frame = 0;
+	    }
+
+
+
 
 	    
+	},
+
+	toggleMusic: function() {	
+		if (this.game.sound.mute) {
+			this.game.sound.mute = false;
+			this.musicToggle.frame = 0;
+		 } else {
+			this.game.sound.mute = true;
+			this.musicToggle.frame = 1;
+		 }
 	},
 
 
@@ -302,7 +341,7 @@ var level1State = {
 		}
 
 
-	    if(potholesRepaired > 10){
+	    if(potholesRepaired > 1){
 	    	potholesRepaired = 0
 	    	game.state.start('level2');
 	    }
@@ -381,7 +420,29 @@ var level2State = {
 	    timer = game.time.events.loop(timeInterval, spawnLevel2, this); 
 	    potholeTimer = game.time.events.loop(5000, addPotholes, this); 
 	    powerupTimer = game.time.events.loop(8000, addPowerups, this); 
+
+	    //Adding the mute-button
+    	this.musicToggle = this.game.add.button(this.game.world.width - 70, 420, 'soundOnOff', this.toggleMusic, this);
+    
+	    //Changing the correct frame of the mute-buttons spritesheet.
+	    if (this.game.sound.mute) {
+	      this.musicToggle.frame = 1;
+	    } else {
+	      this.musicToggle.frame = 0;
+	    }
 	
+	},
+
+
+
+	toggleMusic: function() {	
+		if (this.game.sound.mute) {
+			this.game.sound.mute = false;
+			this.musicToggle.frame = 0;
+		 } else {
+			this.game.sound.mute = true;
+			this.musicToggle.frame = 1;
+		 }
 	},
 
 	update: function() {
@@ -424,7 +485,7 @@ var level2State = {
 	        player.frame = 26;
 	    }
 
-	    if(potholesRepaired > 10){
+	    if(potholesRepaired > 1){
 	    	potholesRepaired = 0
 	    	game.state.start('level3');
 	    }
@@ -502,7 +563,28 @@ var level3State = {
 	    timer = game.time.events.loop(timeInterval, spawnLevel3, this); 
 	    potholeTimer = game.time.events.loop(5000, addPotholes, this); 
 	    powerupTimer = game.time.events.loop(8000, addPowerups, this); 
+
+	    //Adding the mute-button
+    	this.musicToggle = this.game.add.button(this.game.world.width - 70, 420, 'soundOnOff', this.toggleMusic, this);
+    
+	    //Changing the correct frame of the mute-buttons spritesheet.
+	    if (this.game.sound.mute) {
+	      this.musicToggle.frame = 1;
+	    } else {
+	      this.musicToggle.frame = 0;
+	    }
 	
+	
+	},
+
+	toggleMusic: function() {	
+		if (this.game.sound.mute) {
+			this.game.sound.mute = false;
+			this.musicToggle.frame = 0;
+		 } else {
+			this.game.sound.mute = true;
+			this.musicToggle.frame = 1;
+		 }
 	},
 
 	update: function() {
@@ -545,7 +627,7 @@ var level3State = {
 	        player.frame = 26;
 	    }
 
-	    if(potholesRepaired > 10){
+	    if(potholesRepaired > 1){
 	    	potholesRepaired = 0
 	    	game.state.start('win');
 	    }
@@ -605,8 +687,6 @@ var winState = {
 var loseState = {
 
 	create: function() {
-<<<<<<< HEAD
-		
 		level1music.mute = true;
 		level2music.mute = true;
 		level3music.mute = true;
@@ -617,8 +697,7 @@ var loseState = {
 		
 		var winLabel = game.add.text(89, 89, 'YOU LOST!',
 									{font: '50px Arial', fill: '#00FF00'} );
-=======
->>>>>>> origin/master
+
 
 		game.add.sprite(0, 0, 'loseScreen');
 
@@ -954,32 +1033,32 @@ game.state.start('boot');
 
 	};
 
-	function music(){
+	// function music(){
 		
-		if(soundOn){
-			console.log("Tried to change UI");
-			buttonMuteMusic = game.add.button(600, 420, 'ui-musicOn', music, this);
-			buttonMuteMusic.bringToTop();
-		}else{
-			console.log("Tried to change UI");
-			buttonMuteMusic = game.add.button(600, 420, 'ui-musicOff', music, this);
-			buttonMuteMusic.bringToTop();
-		}
-	};
+	// 	if(soundOn){
+	// 		console.log("Tried to change UI");
+	// 		buttonMuteMusic = game.add.button(600, 420, 'ui-musicOn', music, this);
+	// 		buttonMuteMusic.bringToTop();
+	// 	}else{
+	// 		console.log("Tried to change UI");
+	// 		buttonMuteMusic = game.add.button(600, 420, 'ui-musicOff', music, this);
+	// 		buttonMuteMusic.bringToTop();
+	// 	}
+	// };
 
-	function sound(){
+	// function sound(){
 		
 
-		if(soundOn){
-			console.log("Tried to change UI");
-			buttonMuteSound = game.add.button(660, 420, 'ui-soundOn', sound, this);
-			buttonMuteSound.bringToTop();
-		}else{
-			console.log("Tried to change UI");
-			buttonMuteSound = game.add.button(660, 420, 'ui-soundOff', sound, this);
-			buttonMuteSound.bringToTop();
-		}
-	};
+	// 	if(soundOn){
+	// 		console.log("Tried to change UI");
+	// 		buttonMuteSound = game.add.button(660, 420, 'ui-soundOn', sound, this);
+	// 		buttonMuteSound.bringToTop();
+	// 	}else{
+	// 		console.log("Tried to change UI");
+	// 		buttonMuteSound = game.add.button(660, 420, 'ui-soundOff', sound, this);
+	// 		buttonMuteSound.bringToTop();
+	// 	}
+	// };
 
 // Avoid `console` errors in browsers that lack a console.
 (function() {

@@ -319,29 +319,29 @@ game.state.start('boot');
 
 	};
 
-	function music(){
+	// function music(){
 		
-		if(soundOn){
-			console.log("Tried to change UI");
-			buttonMuteMusic = game.add.button(600, 420, 'ui-musicOn', music, this);
-			buttonMuteMusic.bringToTop();
-		}else{
-			console.log("Tried to change UI");
-			buttonMuteMusic = game.add.button(600, 420, 'ui-musicOff', music, this);
-			buttonMuteMusic.bringToTop();
-		}
-	};
+	// 	if(soundOn){
+	// 		console.log("Tried to change UI");
+	// 		buttonMuteMusic = game.add.button(600, 420, 'ui-musicOn', music, this);
+	// 		buttonMuteMusic.bringToTop();
+	// 	}else{
+	// 		console.log("Tried to change UI");
+	// 		buttonMuteMusic = game.add.button(600, 420, 'ui-musicOff', music, this);
+	// 		buttonMuteMusic.bringToTop();
+	// 	}
+	// };
 
-	function sound(){
+	// function sound(){
 		
 
-		if(soundOn){
-			console.log("Tried to change UI");
-			buttonMuteSound = game.add.button(660, 420, 'ui-soundOn', sound, this);
-			buttonMuteSound.bringToTop();
-		}else{
-			console.log("Tried to change UI");
-			buttonMuteSound = game.add.button(660, 420, 'ui-soundOff', sound, this);
-			buttonMuteSound.bringToTop();
-		}
-	};
+	// 	if(soundOn){
+	// 		console.log("Tried to change UI");
+	// 		buttonMuteSound = game.add.button(660, 420, 'ui-soundOn', sound, this);
+	// 		buttonMuteSound.bringToTop();
+	// 	}else{
+	// 		console.log("Tried to change UI");
+	// 		buttonMuteSound = game.add.button(660, 420, 'ui-soundOff', sound, this);
+	// 		buttonMuteSound.bringToTop();
+	// 	}
+	// };

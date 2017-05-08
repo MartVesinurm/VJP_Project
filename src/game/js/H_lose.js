@@ -1,8 +1,6 @@
 var loseState = {
 
 	create: function() {
-<<<<<<< HEAD
-		
 		level1music.mute = true;
 		level2music.mute = true;
 		level3music.mute = true;
@@ -13,8 +11,7 @@ var loseState = {
 		
 		var winLabel = game.add.text(89, 89, 'YOU LOST!',
 									{font: '50px Arial', fill: '#00FF00'} );
-=======
->>>>>>> origin/master
+
 
 		game.add.sprite(0, 0, 'loseScreen');
 
