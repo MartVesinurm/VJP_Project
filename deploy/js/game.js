@@ -168,15 +168,15 @@ var menuCreditsState = {
     var marks;
     var drinks;
     var playerSpeed = 150;
-    var carSpeedRight = 40;
-    var carSpeedLeft = -40;
+    var carSpeedRight = 50;
+    var carSpeedLeft = -50;
     var potholesRepaired = 0;
-    var timeInterval = 500;
+    var timeInterval = 1500;
     var player;
 	var vehicles;
 	var levelBuffer;
 	var index; //Indeksi satunnaisen autokuvan generoimisieen
-	var level = 1;
+	var level;
     
 
 var level1State = {
@@ -184,7 +184,10 @@ var level1State = {
 
 	create: function(){
 
-
+		level = 1;
+		timeInterval = 1500;
+		carSpeedLeft = -50;
+		carSpeedRight = 50;
 
 		game.add.sprite(0, 0, 'background1');
 		cars = game.add.group();
@@ -229,6 +232,7 @@ var level1State = {
 		player.body.velocity.y = 0;
 
 		cars.forEach(checkPos, this);
+
 		
 		if (cursors.left.isDown)
 	    {
@@ -242,25 +246,22 @@ var level1State = {
 
 	        player.animations.play('right');
 	    }
-		 else if (cursors.up.isDown)
+		else if (cursors.up.isDown)
 	    {
 	        player.body.velocity.y = -playerSpeed;
 
 	        player.animations.play('up');
 	    }
-		 else if (cursors.down.isDown)
+		else if (cursors.down.isDown)
 	    {
 	        player.body.velocity.y = playerSpeed;
 
 	        player.animations.play('down');
-	    }
-	    else
-	    {
-	        //  Stand still
-	        player.animations.stop();
+	    }else {
+			player.frame = 26;
+			player.animations.stop()
+		}
 
-	        player.frame = 26;
-	    }
 
 	    if(potholesRepaired > 10){
 	    	potholesRepaired = 0
@@ -277,6 +278,12 @@ var level1State = {
 		game.physics.arcade.overlap(player, potholes, updateScore, null, this);
 		game.physics.arcade.collide(cars, cars);
 		game.physics.arcade.overlap(cars, potholes, reduceScore, null, this);
+		game.physics.arcade.overlap(cars, drinks, killPowerup, null, this);
+		game.physics.arcade.overlap(cars, marks, killPowerup, null, this);
+		
+		if(potholesRepaired < -1000) {
+			die(player)
+		}
 
 	},
 
@@ -293,6 +300,11 @@ var level2State = {
 
 
 	create: function(){
+		
+		timeInterval = 1500;
+		carSpeedLeft = -60;
+		carSpeedRight = 60;
+
 		level = 2
 		game.add.sprite(0, 0, 'background2');
 		cars = game.add.group();
@@ -385,7 +397,12 @@ var level2State = {
 		game.physics.arcade.overlap(player, potholes, updateScore, null, this);
 		game.physics.arcade.collide(cars, cars);
 		game.physics.arcade.overlap(cars, potholes, reduceScore, null, this);
-
+		game.physics.arcade.overlap(cars, drinks, killPowerup, null, this);
+		game.physics.arcade.overlap(cars, marks, killPowerup, null, this);
+		
+		if(potholesRepaired < -1000) {
+			die(player);
+		}
 	},
 
 	
@@ -401,6 +418,10 @@ var level3State = {
 
 
 	create: function(){
+		
+		timeInterval = 1000;
+		carSpeedLeft = -100;
+		carSpeedRight = 100;
 		
 		level = 3
 		game.add.sprite(0, 0, 'background3');
@@ -494,7 +515,12 @@ var level3State = {
 		game.physics.arcade.overlap(player, potholes, updateScore, null, this);
 		game.physics.arcade.collide(cars, cars);
 		game.physics.arcade.overlap(cars, potholes, reduceScore, null, this);
+		game.physics.arcade.overlap(cars, drinks, killPowerup, null, this);
+		game.physics.arcade.overlap(cars, marks, killPowerup, null, this);
 
+		if(potholesRepaired < -1000) {
+			die(player)
+		}
 	},
 
 	
@@ -533,7 +559,7 @@ var loseState = {
 		var startLabel = game.add.text(80, game.world.heigth-80,
 									   'press the button to restart',
 									   {font: '25px Arial', fill: '#ffffff'});
-
+		potholesRepaired = 0;
 		game.load.image(game.world.width / 2-95, 175, 'playGame' );
 		buttonPlay = game.add.button(game.world.width / 2-95 , 175, 'playGame', this.restart, this, 2, 1, 0);
 	},
@@ -659,10 +685,6 @@ game.state.start('boot');
 	     
 	};
 
-	game.load.image('car31', 'assets/pictures/cars/car3_1.png');
-	function lol() {
-		return 'car31';
-	}
 
 	function randomCarLeft() {
 		if(level == 1) {
@@ -741,7 +763,9 @@ game.state.start('boot');
 		}	
 	}
 
-	
+	function killPowerup(car, item) {
+		item.kill();
+	}
 
 	function addPothole(x, y) {
 	    // Create a pothole at the position x and y

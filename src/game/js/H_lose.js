@@ -7,7 +7,7 @@ var loseState = {
 		var startLabel = game.add.text(80, game.world.heigth-80,
 									   'press the button to restart',
 									   {font: '25px Arial', fill: '#ffffff'});
-
+		potholesRepaired = 0;
 		game.load.image(game.world.width / 2-95, 175, 'playGame' );
 		buttonPlay = game.add.button(game.world.width / 2-95 , 175, 'playGame', this.restart, this, 2, 1, 0);
 	},

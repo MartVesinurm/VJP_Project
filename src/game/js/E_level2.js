@@ -2,6 +2,11 @@ var level2State = {
 
 
 	create: function(){
+		
+		timeInterval = 1500;
+		carSpeedLeft = -60;
+		carSpeedRight = 60;
+
 		level = 2
 		game.add.sprite(0, 0, 'background2');
 		cars = game.add.group();
@@ -94,7 +99,12 @@ var level2State = {
 		game.physics.arcade.overlap(player, potholes, updateScore, null, this);
 		game.physics.arcade.collide(cars, cars);
 		game.physics.arcade.overlap(cars, potholes, reduceScore, null, this);
-
+		game.physics.arcade.overlap(cars, drinks, killPowerup, null, this);
+		game.physics.arcade.overlap(cars, marks, killPowerup, null, this);
+		
+		if(potholesRepaired < -1000) {
+			die(player);
+		}
 	},
 
 	

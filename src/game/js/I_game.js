@@ -115,10 +115,6 @@ game.state.start('boot');
 	     
 	};
 
-	game.load.image('car31', 'assets/pictures/cars/car3_1.png');
-	function lol() {
-		return 'car31';
-	}
 
 	function randomCarLeft() {
 		if(level == 1) {
@@ -197,7 +193,9 @@ game.state.start('boot');
 		}	
 	}
 
-	
+	function killPowerup(car, item) {
+		item.kill();
+	}
 
 	function addPothole(x, y) {
 	    // Create a pothole at the position x and y
