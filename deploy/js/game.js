@@ -173,15 +173,12 @@ var menuCreditsState = {
     var potholesRepaired = 0;
     var timeInterval = 500;
     var player;
-<<<<<<< HEAD
     var soundOn = true;
     var musicOn = true;
-=======
 	var vehicles;
 	var levelBuffer;
 	var index; //Indeksi satunnaisen autokuvan generoimisieen
 	var level = 1;
->>>>>>> origin/master
     
 
 var level1State = {
@@ -225,18 +222,9 @@ var level1State = {
 	    potholeTimer = game.time.events.loop(5000, addPotholes, this); 
 	    powerupTimer = game.time.events.loop(8000, addPowerups, this); 
 
-	    buttonMuteMusic = game.add.button(600, 420, 'ui-musicOn', this.music, this, 2, 1, 0);
-	    buttonMuteSound = game.add.button(660, 420, 'ui-soundOn', this.sound, this, 2, 1, 0);
-	
+	    
 	},
 
-	sound: function(){
-
-	}
-
-	music: function(){
-
-	}
 
 	update: function() {
 		var cursors = game.input.keyboard.createCursorKeys();
@@ -293,6 +281,9 @@ var level1State = {
 		game.physics.arcade.overlap(player, potholes, updateScore, null, this);
 		game.physics.arcade.collide(cars, cars);
 		game.physics.arcade.overlap(cars, potholes, reduceScore, null, this);
+
+		this.sound();
+		this.music();
 
 	},
 
@@ -879,6 +870,22 @@ game.state.start('boot');
 
 	    text.setText("Score: " + Math.floor(potholesRepaired));
 
+	};
+
+	function music(){
+		if(soundOn){
+			buttonMuteMusic = game.add.button(600, 420, 'ui-musicOn', this.music, this, 2, 1, 0);
+		}else{
+			buttonMuteMusic = game.add.button(600, 420, 'ui-musicOff', this.music, this, 2, 1, 0);
+		}
+	};
+
+	function sound(){
+		if(soundOn){
+			buttonMuteSound = game.add.button(660, 420, 'ui-soundOn', this.sound, this, 2, 1, 0);
+		}else{
+			buttonMuteSound = game.add.button(660, 420, 'ui-soundOff', this.sound, this, 2, 1, 0);
+		}
 	};
 
 // Avoid `console` errors in browsers that lack a console.
