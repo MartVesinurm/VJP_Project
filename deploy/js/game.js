@@ -98,6 +98,8 @@ var loadState = {
 		game.load.audio('lose', 'assets/audio/lose.wav');
 		game.load.audio('menu', 'assets/audio/menu.mp3');
 		game.load.audio('win', 'assets/audio/win.wav');
+		game.load.audio('drink', 'assets/audio/drink.wav');
+		game.load.audio('mark', 'assets/audio/mark.wav');
 
 		
 	},
@@ -125,10 +127,14 @@ var menuState = {
 		level3music = game.add.audio('level3');
 		winmusic = game.add.audio('win');
 		losemusic = game.add.audio('lose');
+		hitmusic = game.add.audio('hit')
+		menumusic = game.add.audio('level_menu');
+		drinkmusic = game.add.audio('drink')
+		markmusic = game.add.audio('mark')
+	
+		menumusic.loopFull();
 		
-		
-	menumusic = game.add.audio('level_menu');
-	menumusic.loopFull();
+		potholesRepaired = 0;
 
     //Adding the mute-button
     this.musicToggle = this.game.add.button(this.game.world.width - 70, 420, 'soundOnOff', this.toggleMusic, this);
@@ -177,6 +183,8 @@ var menuHelpState = {
 
 	create: function() {
 
+		menumusic.mute = true;
+		
 		game.add.sprite(0, 0, 'backgroundOhjeet');
 
 		game.load.image(game.world.width / 2-95, 175, 'instructions' );
@@ -194,6 +202,8 @@ var menuHelpState = {
 var menuCreditsState = {
 
 	create: function() {
+		
+		menumusic.mute = true;
 
 		game.add.sprite(0, 0, 'backgroundTietoa');
 
@@ -235,7 +245,8 @@ var level1State = {
 	create: function(){
 		
 		menumusic.mute = true;
-		level1music.loopFull()
+		level1music.loopFull();
+
 		
 		level = 1;
 		timeInterval = 1500;
@@ -341,7 +352,7 @@ var level1State = {
 		}
 
 
-	    if(potholesRepaired > 1){
+	    if(potholesRepaired > 100){
 	    	potholesRepaired = 0
 	    	game.state.start('level2');
 	    }
@@ -986,6 +997,7 @@ game.state.start('boot');
 
 	function energyBoost(player, drink) {
 		drink.kill()
+		drinkmusic.play()
 		if(playerSpeed == 150) {
 		playerSpeed = playerSpeed * 2;
 
@@ -997,6 +1009,7 @@ game.state.start('boot');
 
 	function speedAlert(player, mark) {
 		mark.kill()
+		markmusic.play()
 		cars.forEach(function(item) {
 			if(item.body.velocity.x < 0){
 				item.body.velocity.x = carSpeedLeft / 2
@@ -1023,6 +1036,7 @@ game.state.start('boot');
 
 	function updateScore(player, pothole){
 		pothole.kill()
+		hitmusic.play()
 		potholesRepaired += 50
 	};
 

@@ -272,6 +272,7 @@ game.state.start('boot');
 
 	function energyBoost(player, drink) {
 		drink.kill()
+		drinkmusic.play()
 		if(playerSpeed == 150) {
 		playerSpeed = playerSpeed * 2;
 
@@ -283,6 +284,7 @@ game.state.start('boot');
 
 	function speedAlert(player, mark) {
 		mark.kill()
+		markmusic.play()
 		cars.forEach(function(item) {
 			if(item.body.velocity.x < 0){
 				item.body.velocity.x = carSpeedLeft / 2
@@ -309,6 +311,7 @@ game.state.start('boot');
 
 	function updateScore(player, pothole){
 		pothole.kill()
+		hitmusic.play()
 		potholesRepaired += 50
 	};
 

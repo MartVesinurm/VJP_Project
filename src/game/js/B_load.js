@@ -84,6 +84,8 @@ var loadState = {
 		game.load.audio('lose', 'assets/audio/lose.wav');
 		game.load.audio('menu', 'assets/audio/menu.mp3');
 		game.load.audio('win', 'assets/audio/win.wav');
+		game.load.audio('drink', 'assets/audio/drink.wav');
+		game.load.audio('mark', 'assets/audio/mark.wav');
 
 		
 	},

@@ -18,7 +18,8 @@ var level1State = {
 	create: function(){
 		
 		menumusic.mute = true;
-		level1music.loopFull()
+		level1music.loopFull();
+
 		
 		level = 1;
 		timeInterval = 1500;
@@ -124,7 +125,7 @@ var level1State = {
 		}
 
 
-	    if(potholesRepaired > 1){
+	    if(potholesRepaired > 100){
 	    	potholesRepaired = 0
 	    	game.state.start('level2');
 	    }

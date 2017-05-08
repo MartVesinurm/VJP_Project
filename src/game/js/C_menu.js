@@ -13,10 +13,14 @@ var menuState = {
 		level3music = game.add.audio('level3');
 		winmusic = game.add.audio('win');
 		losemusic = game.add.audio('lose');
+		hitmusic = game.add.audio('hit')
+		menumusic = game.add.audio('level_menu');
+		drinkmusic = game.add.audio('drink')
+		markmusic = game.add.audio('mark')
+	
+		menumusic.loopFull();
 		
-		
-	menumusic = game.add.audio('level_menu');
-	menumusic.loopFull();
+		potholesRepaired = 0;
 
     //Adding the mute-button
     this.musicToggle = this.game.add.button(this.game.world.width - 70, 420, 'soundOnOff', this.toggleMusic, this);

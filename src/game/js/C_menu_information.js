@@ -1,6 +1,8 @@
 var menuCreditsState = {
 
 	create: function() {
+		
+		menumusic.mute = true;
 
 		game.add.sprite(0, 0, 'backgroundTietoa');
 
