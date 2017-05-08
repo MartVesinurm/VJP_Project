@@ -6,8 +6,12 @@
     var carSpeedRight = 40;
     var carSpeedLeft = -40;
     var potholesRepaired = 0;
-    var timeInterval = 1000;
+    var timeInterval = 500;
     var player;
+	var vehicles;
+	var levelBuffer;
+	var index; //Indeksi satunnaisen autokuvan generoimisieen
+	var level = 1;
     
 
 var level1State = {
@@ -21,6 +25,7 @@ var level1State = {
 		cars = game.add.group();
 		potholes = game.add.group();
 		cars.enableBody = true;
+		vehicles = game.add.group()
 
 		player = game.add.sprite(game.world.width / 2, game.world.height / 2, 'dude');
 		game.physics.arcade.enable(player);

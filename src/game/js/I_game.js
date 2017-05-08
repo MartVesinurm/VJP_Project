@@ -49,13 +49,13 @@ game.state.start('boot');
 	    // addOneCar(0, 159)
 
 	    if(dir == 1){
-			addOneCar(720, 290, 'car12', dir)
+			addOneCar(720, 290, randomCarLeft(), dir)
 		}else if(dir == 2){
-			addOneCar(0, 322, 'car11', dir)
+			addOneCar(0, 322, randomCarRight(), dir)
 		}else if(dir == 3){
-			addOneCar(720, 130, 'car12', dir)
+			addOneCar(720, 130, randomCarLeft(), dir)
 		}else{
-			addOneCar(0, 161, 'car11', dir)
+			addOneCar(0, 161, randomCarRight(), dir)
 		}
 
 	     
@@ -70,17 +70,17 @@ game.state.start('boot');
 	    // addOneCar(0, 159)
 
 	    if(dir == 1){
-			addOneCar(720, 82, 'car12', dir)
+			addOneCar(720, 82, randomCarLeft(), dir)
 		}else if(dir == 2){
-			addOneCar(0, 122, 'car11', dir)
+			addOneCar(0, 122, randomCarRight(), dir)
 		}else if(dir == 3){
-			addOneCar(720, 162, 'car12', dir)
+			addOneCar(720, 162, randomCarLeft(), dir)
 		}else if(dir == 4){
-			addOneCar(0, 305, 'car11', dir)
+			addOneCar(0, 305, randomCarRight(), dir)
 		}else if(dir == 5){
-			addOneCar(720, 347, 'car12', dir)
+			addOneCar(720, 347, randomCarLeft(), dir)
 		}else {
-			addOneCar(0,387, 'car11', dir)
+			addOneCar(0,387, randomCarRight(), dir)
 		}
 
 	     
@@ -96,28 +96,108 @@ game.state.start('boot');
 	    // addOneCar(0, 159)
 
 	    if(dir == 1){
-			addOneCar(720, 115, 'car12', dir)
+			addOneCar(720, 115, randomCarLeft(), dir)
 		}else if(dir == 3){
-			addOneCar(720, 144, 'car12', dir)
+			addOneCar(720, 144, randomCarLeft(), dir)
 		}else if(dir == 2){
-			addOneCar(0, 179, 'car11', dir)
+			addOneCar(0, 179, randomCarRight(), dir)
 		}else if(dir == 4){
-			addOneCar(0, 208, 'car11', dir)
+			addOneCar(0, 208, randomCarRight(), dir)
 		}else if(dir == 5){
-			addOneCar(720, 322, 'car12', dir)
+			addOneCar(720, 322, randomCarLeft(), dir)
 		}else if(dir == 7){
-			addOneCar(720, 354, 'car12', dir)
+			addOneCar(720, 354, randomCarLeft(), dir)
 		}else if(dir == 6){
-			addOneCar(0, 386, 'car11', dir)
+			addOneCar(0, 386, randomCarRight(), dir)
 		}else 
-			addOneCar(0, 416, 'car11', dir)
+			addOneCar(0, 416, randomCarRight(), dir)
 
 	     
 	};
 
-	function randomSpriteLevel1() {
-		
+	game.load.image('car31', 'assets/pictures/cars/car3_1.png');
+	function lol() {
+		return 'car31';
 	}
+
+	function randomCarLeft() {
+		if(level == 1) {
+			levelBuffer = 3;
+		}
+		else if(level == 2) {
+			levelBuffer = 5;
+		}
+		else {
+			levelBuffer = 8;
+		}
+		
+		index = Math.floor(Math.random() * levelBuffer) + 1;
+		
+		if(index == 1) {
+			return 'car12';
+		}
+		else if(index == 2) {
+			return 'car22';
+		}
+		else if(index == 3) {
+			return 'car32';
+		}
+		else if(index == 4) {
+			return 'car42';
+		}
+		else if(index == 5) {
+			return 'car52';
+		}
+		else if(index == 6) {
+			return 'car62';
+		}
+		else if(index == 7) {
+			return 'car72';
+		}
+		else {
+			return 'car82';
+		}
+	}
+
+	function randomCarRight() {
+		if(level == 1) {
+			levelBuffer = 3;
+		}
+		else if(level == 2) {
+			levelBuffer = 5;
+		}
+		else {
+			levelBuffer = 8;
+		}
+		
+		index = Math.floor(Math.random() * levelBuffer) + 1;
+		
+		if(index == 1) {
+			return 'car11';
+		}
+		else if(index == 2) {
+			return 'car21';
+		}
+		else if(index == 3) {
+			return 'car31';
+		}
+		else if(index == 4) {
+			return 'car41';
+		}
+		else if(index == 5) {
+			return 'car51';
+		}
+		else if(index == 6) {
+			return 'car61';
+		}
+		else if(index == 7) {
+			return 'car71';
+		}else {
+			return 'car81';
+		}	
+	}
+
+	
 
 	function addPothole(x, y) {
 	    // Create a pothole at the position x and y

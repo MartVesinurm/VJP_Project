@@ -2,7 +2,8 @@ var level3State = {
 
 
 	create: function(){
-
+		
+		level = 3
 		game.add.sprite(0, 0, 'background3');
 		cars = game.add.group();
 		potholes = game.add.group();
