@@ -38,7 +38,7 @@ var level1State = {
 		marks.enableBody = true;
 		drinks.enableBody = true;
 
-		text = game.add.text(665, 24, "Score: 0", {
+		text = game.add.text(650, 24, "Score: 0", {
 	        font: "24px Arial",
 	        fill: "#ffffff",
 	        align: "left"
@@ -90,6 +90,11 @@ var level1State = {
 	        player.animations.stop();
 
 	        player.frame = 26;
+	    }
+
+	    if(potholesRepaired > 10){
+	    	potholesRepaired = 0
+	    	game.state.start('level2');
 	    }
 
 

@@ -8,8 +8,8 @@ var winState = {
 									   'press the "w" key to restart',
 									   {font: '25px Arial', fill: '#ffffff'});
 
-		var wkey = game.input.keyboard.addKey(Phaser.keyboard.W);
-		wkey.onDown.addOnce(this.restart, this);
+		game.load.image(game.world.width / 2-95, 175, 'playGame' );
+		buttonPlay = game.add.button(game.world.width / 2-95 , 175, 'playGame', this.restart, this, 2, 1, 0);
 	},
 
 	restart: function() {

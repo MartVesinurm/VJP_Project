@@ -3,29 +3,27 @@ var level3State = {
 
 	create: function(){
 
-		// player = game.add.sprite(game.world.width / 2, game.world.height / 2, 'dude');
-	 //    //Add player animations 
-		// player.animations.add('up', [104, 105, 106, 107, 108, 109, 110, 111, 112], 10, true);
-	 //    player.animations.add('right', [143, 144, 145, 146, 147, 148, 149, 150, 151], 10, true);
-		// player.animations.add('left', [117, 118, 119, 120, 121, 122, 123, 124, 125], 10, true);
-		// player.animations.add('down', [130, 131, 132, 133, 134, 135, 136, 137, 138], 10, true);
-
-
-		game.physics.arcade.enable(player);
-		player.body.collideWorldBounds = true;
-
 		game.add.sprite(0, 0, 'background3');
 		cars = game.add.group();
 		potholes = game.add.group();
 		cars.enableBody = true;
 
-	
+		player = game.add.sprite(game.world.width / 2, game.world.height / 2, 'dude');
+		game.physics.arcade.enable(player);
+		player.body.collideWorldBounds = true;
+		
+		player.animations.add('up', [104, 105, 106, 107, 108, 109, 110, 111, 112], 10, true);
+	    player.animations.add('right', [143, 144, 145, 146, 147, 148, 149, 150, 151], 10, true);
+		player.animations.add('left', [117, 118, 119, 120, 121, 122, 123, 124, 125], 10, true);
+		player.animations.add('down', [130, 131, 132, 133, 134, 135, 136, 137, 138], 10, true);
+		
 		drinks = game.add.group();
 		marks = game.add.group();
 
 
 		marks.enableBody = true;
 		drinks.enableBody = true;
+
 
 		text = game.add.text(665, 24, "Score: 0", {
 	        font: "24px Arial",
@@ -79,6 +77,11 @@ var level3State = {
 	        player.animations.stop();
 
 	        player.frame = 26;
+	    }
+
+	    if(potholesRepaired > 10){
+	    	potholesRepaired = 0
+	    	game.state.start('win');
 	    }
 
 
