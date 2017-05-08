@@ -2,7 +2,7 @@ var level2State = {
 
 
 	create: function(){
-
+		level = 2
 		game.add.sprite(0, 0, 'background2');
 		cars = game.add.group();
 		potholes = game.add.group();

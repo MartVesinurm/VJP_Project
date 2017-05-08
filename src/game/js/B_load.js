@@ -68,6 +68,7 @@ var loadState = {
 	    game.load.image('car81', 'assets/pictures/cars/car8_1.png');
 	    game.load.image('car82', 'assets/pictures/cars/car8_2.png');
 
+		
 	},
 
 	create: function() {
