@@ -58,6 +58,9 @@ var level1State = {
 	    potholeTimer = game.time.events.loop(5000, addPotholes, this); 
 	    powerupTimer = game.time.events.loop(8000, addPowerups, this); 
 
+	    buttonMuteMusic = game.add.button(600, 420, 'ui-musicOn', music, this);
+	    buttonMuteSound = game.add.button(660, 420, 'ui-soundOn', sound, this);
+
 	    
 	},
 
@@ -121,9 +124,6 @@ var level1State = {
 		if(potholesRepaired < -1000) {
 			die(player)
 		}
-
-		this.sound();
-		this.music();
 
 	},
 
