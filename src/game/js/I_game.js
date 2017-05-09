@@ -322,6 +322,8 @@ game.state.start('boot');
 
 	};
 
+
+
 	// function music(){
 		
 	// 	if(soundOn){

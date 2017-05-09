@@ -55,6 +55,8 @@ var level3State = {
 	      this.musicToggle.frame = 0;
 	    }
 	
+		//Adding the pause-button
+	    this.pause_label = this.game.add.button(this.game.world.width - 130, 420, 'ui-menu', this.pause, this);
 	
 	},
 
@@ -66,6 +68,30 @@ var level3State = {
 			this.game.sound.mute = true;
 			this.musicToggle.frame = 1;
 		 }
+	},
+
+	pause: function(){
+	    	if(game.paused == true){
+	    		menu.destroy();
+	    		choiseLabel.destroy();
+	    		game.input.onTap.remove(this.pause, this);	
+	    		this.game.paused = false;
+
+	    	}else{
+
+	    		// When the pause button is pressed, pause the game
+		        this.game.paused = true;
+
+		        // Then add the menu
+		        menu = game.add.sprite(0, 0, 'pauseMenu');
+		        game.input.onTap.add(this.pause, this);	
+
+		        // And a label to illustrate which menu item was chosen. (This is not necessary)
+		        choiseLabel = game.add.text(this.game.world.width / 2, 240, 'Klikkaa jatkaaksesi peliä', { font: '30px Arial', fill: '#fff' });
+		        choiseLabel.anchor.setTo(0.5, 0.5);
+
+	    	}
+
 	},
 
 	update: function() {

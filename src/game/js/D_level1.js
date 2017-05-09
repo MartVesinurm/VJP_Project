@@ -60,7 +60,7 @@ var level1State = {
 	    potholeTimer = game.time.events.loop(5000, addPotholes, this); 
 	    powerupTimer = game.time.events.loop(8000, addPowerups, this); 
 
-		        //Adding the mute-button
+		//Adding the mute-button
 	    this.musicToggle = this.game.add.button(this.game.world.width - 70, 420, 'soundOnOff', this.toggleMusic, this);
 	    
 	    //Changing the correct frame of the mute-buttons spritesheet.
@@ -68,13 +68,14 @@ var level1State = {
 	      this.musicToggle.frame = 1;
 	    } else {
 	      this.musicToggle.frame = 0;
-	    }
+	    };
 
+	    //Adding the pause-button
+	    this.pause_label = this.game.add.button(this.game.world.width - 130, 420, 'ui-menu', this.pause, this);
 
-
-
-	    
+	    	    
 	},
+
 
 	toggleMusic: function() {	
 		if (this.game.sound.mute) {
@@ -86,6 +87,32 @@ var level1State = {
 		 }
 	},
 
+	pause: function(){
+	    	if(game.paused == true){
+	    		menu.destroy();
+	    		choiseLabel.destroy();
+	    		game.input.onTap.remove(this.pause, this);	
+	    		this.game.paused = false;
+
+	    	}else{
+
+	    		// When the pause button is pressed, pause the game
+		        this.game.paused = true;
+
+		        // Then add the menu
+		        menu = game.add.sprite(0, 0, 'pauseMenu');
+		        game.input.onTap.add(this.pause, this);	
+
+		        // And a label to illustrate which menu item was chosen. (This is not necessary)
+		        choiseLabel = game.add.text(this.game.world.width / 2, 240, 'Klikkaa jatkaaksesi peliä', { font: '30px Arial', fill: '#fff' });
+		        choiseLabel.anchor.setTo(0.5, 0.5);
+
+	    	}
+
+	},
+
+
+
 
 	update: function() {
 		var cursors = game.input.keyboard.createCursorKeys();
@@ -95,7 +122,8 @@ var level1State = {
 
 		cars.forEach(checkPos, this);
 
-		
+
+
 		if (cursors.left.isDown)
 	    {
 	        player.body.velocity.x = -playerSpeed;

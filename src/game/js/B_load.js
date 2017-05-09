@@ -25,6 +25,7 @@ var loadState = {
 
 		game.load.image('backgroundOhjeet', 'assets/pictures/menu/menu_ohjeet.png');
 		game.load.image('backgroundTietoa', 'assets/pictures/menu/menu_credits.png');
+		game.load.image('pauseMenu', 'assets/pictures/menu/pauseMenu.png')
 
 		//Load lose and win screens
 		game.load.image('winScreen', 'assets/pictures/win.png');
