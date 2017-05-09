@@ -2,18 +2,28 @@
 
 This is a simple game project made for Aalto University course.
 
+**Game idea** is to repair potholes that emerge to road before cars run over them.
+To get to the next level player has to repair enough many potholes to score points.
+Player loses the game if s/he gets ran over by a car. To help player's task game spawns
+powerups. Game has been developed using **Javascript** and Phaser libraries. Game is in Finnish.
+
+## Game features
+* 	Addicting gameplay
+*   Stunning visuals
+* 	Catchy 8 bit soundtrack
+
 Game is built with following technologies:
 *   **Phaser** for accelerated game development
 *   **Node.js** for installing npm dependencies and hosting Phaser
-*   **Grunt** for automating build tasks and compiling the game
+*   **Grunt** for automating development build tasks and compiling the game into singel game.js file
 *   **Phaser template** found <a target="_blank" href="https://github.com/gamecook/phaser-template-project">here</a>
+*   **Adobe Photoshop CC and Illustrator CC** for game graphics and graphical content
+*   **Tiled** for creating visually beautiful maps 
 
-
-
-## Game features
-*   Awesome graphics
-* 	Great idea
-* 	Etc...
+## Third party content
+*	**Kenney** for map and UI graphics found <a target="_blank" href="https://kenney.nl/assets">here</a>
+* 	**Telefrag Entertainment** for vehicle graphics found <a target="_blank" https://opengameart.org/content/cars-trucks-and-a-limo>here</a>
+* 	Yle for game situation pictures
 
 ## Instructions on running the game
 * 	Git clone or download project as .zip
