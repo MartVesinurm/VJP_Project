@@ -5,7 +5,7 @@ var loadState = {
 	preload: function() {
 
 
-		this.logo = this.add.image
+		this.logo = this.add.image;
 		this.add.sprite(0, 0, 'loadpic');
 
 		var loadingLabel = game.add.text(game.world.width / 2 - 150, 430, 'Peliä ladataan...',
@@ -22,11 +22,11 @@ var loadState = {
 		game.load.image('instructions', 'assets/pictures/menu/OHJEET.png');
 		game.load.image('playGame', 'assets/pictures/menu/PELAA.png');
 		game.load.image('information', 'assets/pictures/menu/TIETOA.png');
-		game.load.image('more', 'assets/pictures/menu/more.png')
+		game.load.image('more', 'assets/pictures/menu/more.png');
 
 		game.load.image('backgroundOhjeet', 'assets/pictures/menu/menu_ohjeet.png');
 		game.load.image('backgroundTietoa', 'assets/pictures/menu/menu_credits.png');
-		game.load.image('pauseMenu', 'assets/pictures/menu/pauseMenu.png')
+		game.load.image('pauseMenu', 'assets/pictures/menu/pauseMenu.png');
 
 		//Load lose and win screens
 		game.load.image('winScreen', 'assets/pictures/win.png');
@@ -93,7 +93,7 @@ var loadState = {
 	},
 
 	create: function() {
-		game.state.start('menu')
+		game.state.start('menu');
 	}
 };
 
