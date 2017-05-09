@@ -48,7 +48,7 @@ var level1State = {
 		marks.enableBody = true;
 		drinks.enableBody = true;
 
-		text = game.add.text(650, 24, "Score: 0", {
+		text = game.add.text(600, 24, "Score: 0", {
 	        font: "24px Arial",
 	        fill: "#ffffff",
 	        align: "left"
