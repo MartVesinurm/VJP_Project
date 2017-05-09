@@ -16,6 +16,7 @@ Game is built with following technologies:
 *   **Phaser** for accelerated game development
 *   **Node.js** for installing npm dependencies and hosting Phaser
 *   **Grunt** for automating development build tasks and compiling the game into singel game.js file
+* 	**GitHub** for version control and source code management
 *   **Phaser template** found <a target="_blank" href="https://github.com/gamecook/phaser-template-project">here</a>
 *   **Adobe Photoshop CC and Illustrator CC** for game graphics and graphical content
 *   **Tiled** for creating visually beautiful maps 
