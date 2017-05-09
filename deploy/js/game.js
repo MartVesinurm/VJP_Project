@@ -552,7 +552,7 @@ var level2State = {
 	        player.frame = 26;
 	    }
 
-	    if(potholesRepaired > 1){
+	    if(potholesRepaired > 150){
 	    	potholesRepaired = 0
 	    	game.state.start('level3');
 	    }
@@ -720,7 +720,7 @@ var level3State = {
 	        player.frame = 26;
 	    }
 
-	    if(potholesRepaired > 1){
+	    if(potholesRepaired > 200){
 	    	potholesRepaired = 0
 	    	game.state.start('win');
 	    }

@@ -134,7 +134,7 @@ var level3State = {
 	        player.frame = 26;
 	    }
 
-	    if(potholesRepaired > 1){
+	    if(potholesRepaired > 200){
 	    	potholesRepaired = 0
 	    	game.state.start('win');
 	    }
