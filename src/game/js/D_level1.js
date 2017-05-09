@@ -15,57 +15,8 @@
 	var index;		 //Index for generating car sprite
 	var level;
 
-<<<<<<< HEAD
-	var level1State = {
 
 
-		create: function(){
-
-			// Setting level 1 
-			menumusic.mute = true;
-			level1music.loopFull();
-			playerSpeed = 150;
-
-			level = 1;
-			timeInterval = 2500;
-			carSpeedLeft = -50;
-			carSpeedRight = 50;
-
-			game.add.sprite(0, 0, 'background1');
-			cars = game.add.group();
-			potholes = game.add.group();
-			cars.enableBody = true;
-			vehicles = game.add.group();
-
-			player = game.add.sprite(game.world.width / 2, game.world.height / 2, 'dude');
-			game.physics.arcade.enable(player);
-			player.body.collideWorldBounds = true;
-
-			player.animations.add('up', [104, 105, 106, 107, 108, 109, 110, 111, 112], 10, true);
-			player.animations.add('right', [143, 144, 145, 146, 147, 148, 149, 150, 151], 10, true);
-			player.animations.add('left', [117, 118, 119, 120, 121, 122, 123, 124, 125], 10, true);
-			player.animations.add('down', [130, 131, 132, 133, 134, 135, 136, 137, 138], 10, true);
-
-			drinks = game.add.group();
-			marks = game.add.group();
-
-
-			marks.enableBody = true;
-			drinks.enableBody = true;
-
-			text = game.add.text(650, 24, "Score: 0", {
-				font: "24px Arial",
-				fill: "#ffffff",
-				align: "left"
-			});
-
-			text.anchor.setTo(0.5, 0.5);
-
-			//Creating timers to spawn items correctly
-			timer = game.time.events.loop(timeInterval, spawnLevel1, this); 
-			potholeTimer = game.time.events.loop(5000, addPotholes, this); 
-			powerupTimer = game.time.events.loop(8000, addPowerups, this); 
-=======
 var level1State = {
 
 
@@ -113,7 +64,7 @@ var level1State = {
 	    timer = game.time.events.loop(timeInterval, spawnLevel1, this); 
 	    potholeTimer = game.time.events.loop(5000, addPotholes, this); 
 	    powerupTimer = game.time.events.loop(8000, addPowerups, this); 
->>>>>>> origin/master
+
 
 		//Adding the mute-button
 		this.musicToggle = this.game.add.button(this.game.world.width - 70, 420, 'soundOnOff', this.toggleMusic, this);
@@ -176,7 +127,7 @@ var level1State = {
 			player.body.velocity.x = 0;
 			player.body.velocity.y = 0;
 
-			cars.forEach(checkPos, this);
+			// cars.forEach(checkPos, this);
 
 
 

@@ -100,7 +100,7 @@ var level3State = {
 		player.body.velocity.x = 0;
 		player.body.velocity.y = 0;
 
-		cars.forEach(checkPos, this);
+		// cars.forEach(checkPos, this);
 		
 		if (cursors.left.isDown)
 	    {
