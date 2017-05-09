@@ -12,7 +12,7 @@ powerups. Game has been developed using **Javascript** and Phaser libraries. Gam
 *   Stunning visuals
 * 	Catchy 8 bit soundtrack
 
-Game is built with following technologies:
+## Game is built with following technologies:
 *   **Phaser** for accelerated game development
 *   **Node.js** for installing npm dependencies and hosting Phaser
 *   **Grunt** for automating development build tasks and compiling the game into singel game.js file
