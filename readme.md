@@ -7,6 +7,9 @@ To get to the next level player has to repair enough many potholes to score poin
 Player loses the game if s/he gets ran over by a car. To help player's task game spawns
 powerups. Game has been developed using **Javascript** and Phaser libraries. Game is in Finnish.
 
+
+<a target="_blank" href="https://leevilappi.github.io/game/index.html">**You can play the game here**</a>
+
 ## Game features
 * 	Addicting gameplay
 *   Stunning visuals
