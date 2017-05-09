@@ -91,9 +91,9 @@ var loadState = {
 		game.load.audio('car_whoor', 'assets/audio/car_whoor.wav');
 		game.load.audio('fail', 'assets/audio/fail.wav');
 		game.load.audio('hit', 'assets/audio/hit.wav');
-		game.load.audio('level_menu', 'assets/audio/level_menu_.wav');
-		game.load.audio('level1', 'assets/audio/level1.wav');
-		game.load.audio('level2', 'assets/audio/level2.wav');
+		game.load.audio('level_menu', 'assets/audio/level_menu_.mp3');
+		game.load.audio('level1', 'assets/audio/level1.mp3');
+		game.load.audio('level2', 'assets/audio/level2.mp3');
 		game.load.audio('level3', 'assets/audio/level3.mp3');
 		game.load.audio('lose', 'assets/audio/lose.wav');
 		game.load.audio('menu', 'assets/audio/menu.mp3');
