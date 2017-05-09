@@ -23,7 +23,7 @@ Game is built with following technologies:
 
 ## Third party content
 *	**Kenney** for map and UI graphics found <a target="_blank" href="https://kenney.nl/assets">here</a>
-* 	**Telefrag Entertainment** for vehicle graphics found <a target="_blank" https://opengameart.org/content/cars-trucks-and-a-limo>here</a>
+* 	**Telefrag Entertainment** for vehicle graphics found <a target="_blank" href="https://opengameart.org/content/cars-trucks-and-a-limo">here</a>
 * 	Yle for game situation pictures
 
 ## Instructions on running the game
