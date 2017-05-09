@@ -5,23 +5,26 @@
 
 var bootState = {
 
+	preload: function() {
+			game.load.image('loadpic', 'assets/pictures/load.png');
+	},
+
 	create: function() {
 			game.physics.startSystem(Phaser.Physics.ARCADE);
 			game.state.start('load');
 	}
 }
 
-
-
 var loadState = {
 
 
 	preload: function() {
 
-		
-		game.load.image('loadpic', 'assets/pictures/load.png');
 
-		var loadingLabel = game.add.text(game.world.width / 2 - 150, 480 / 2, 'ladataan peliä...',
+		this.logo = this.add.image
+		this.add.sprite(0, 0, 'loadpic');
+
+		var loadingLabel = game.add.text(game.world.width / 2 - 150, 430, 'Peliä ladataan...',
 											{font: '30px Courier', fill: '#ffffff'});
 
 		//Load game levels
@@ -47,12 +50,12 @@ var loadState = {
 
 		//Load UI sprites
 		game.load.spritesheet('soundOnOff','assets/pictures/UI-sprites/soundOnOff.png', 48, 48, 2, 5, 10);
-		game.load.image('ui-pause', '/assets/pictures/UI-sprites/flatDark13.png');
-		game.load.image('ui-play', '/assets/pictures/UI-sprites/flatDark15.png');
-		game.load.image('ui-settings', '/assets/pictures/UI-sprites/flatDark21.png');
-		game.load.image('ui-check', '/assets/pictures/UI-sprites/flatDark22.png');
-		game.load.image('ui-menu', '/assets/pictures/UI-sprites/flatDark32.png');
-		game.load.image('ui-cross', '/assets/pictures/UI-sprites/flatDark34.png');
+		game.load.image('ui-pause', 'assets/pictures/UI-sprites/flatDark13.png');
+		game.load.image('ui-play', 'assets/pictures/UI-sprites/flatDark15.png');
+		game.load.image('ui-settings', 'assets/pictures/UI-sprites/flatDark21.png');
+		game.load.image('ui-check', 'assets/pictures/UI-sprites/flatDark22.png');
+		game.load.image('ui-menu', 'assets/pictures/UI-sprites/flatDark32.png');
+		game.load.image('ui-cross', 'assets/pictures/UI-sprites/flatDark34.png');
 		
 		
 		//Load powerups
@@ -106,7 +109,6 @@ var loadState = {
 	},
 
 	create: function() {
-		game.add.sprite(0, 0, 'loadpic');
 		game.state.start('menu')
 	}
 };
