@@ -1,5 +1,5 @@
 //Create a new game
-var game = new Phaser.Game(720, 480, Phaser.AUTO, 'gameDiv');
+var game = new Phaser.Game(720, 480, Phaser.CANVAS, 'gameDiv');
 
 
 //Add each state to game. 

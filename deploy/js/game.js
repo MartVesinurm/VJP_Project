@@ -220,7 +220,7 @@ var menuCreditsState = {
 	},
 
 	link: function() {
-		window.open("www.phaser.io", "_blank");
+		window.open("http://www.lvm.fi", "_blank");
 	}
 
 	
@@ -724,7 +724,7 @@ var loseState = {
 	},
 }
 //Create a new game
-var game = new Phaser.Game(720, 480, Phaser.AUTO, 'gameDiv');
+var game = new Phaser.Game(720, 480, Phaser.CANVAS, 'gameDiv');
 
 
 //Add each state to game. 

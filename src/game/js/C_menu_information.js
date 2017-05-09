@@ -19,7 +19,7 @@ var menuCreditsState = {
 	},
 
 	link: function() {
-		window.open("www.phaser.io", "_blank");
+		window.open("http://www.lvm.fi", "_blank");
 	}
 
 	
