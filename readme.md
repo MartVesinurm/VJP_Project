@@ -25,6 +25,7 @@ powerups. Game has been developed using **Javascript** and Phaser libraries. Gam
 *	**Kenney** for map and UI graphics found <a target="_blank" href="https://kenney.nl/assets">here</a>
 * 	**Telefrag Entertainment** for vehicle graphics found <a target="_blank" href="https://opengameart.org/content/cars-trucks-and-a-limo">here</a>
 * 	Yle for game situation pictures
+*  	<a target="_blank" href="http://www.freesound.org/">Music and sound effects</a>
 
 ## Instructions on running the game
 * 	Git clone or download project as .zip
