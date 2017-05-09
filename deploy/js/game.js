@@ -233,7 +233,7 @@ var menuCreditsState = {
     var carSpeedRight = 50;
     var carSpeedLeft = -50;
     var potholesRepaired = 0;
-    var timeInterval = 1500;
+    var timeInterval = 2500;
     var player;
 	var levelBuffer;
 	var index; //Indeksi satunnaisen autokuvan generoimisieen
@@ -246,10 +246,10 @@ var level1State = {
 		
 		menumusic.mute = true;
 		level1music.loopFull();
-
+		playerSpeed = 150;
 		
 		level = 1;
-		timeInterval = 1500;
+		timeInterval = 2500;
 		carSpeedLeft = -50;
 		carSpeedRight = 50;
 
