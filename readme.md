@@ -8,7 +8,7 @@ Player loses the game if s/he gets ran over by a car or too many cars run over p
 To help player's task game spawns powerups. Game has been developed using **Javascript** and Phaser libraries.
 Game is in Finnish. Enjoy the game!
 
-<a target="_blank" href="https://leevilappi.github.io/game/index.html">**You can play the game here**</a>
+<a target="_blank" href="https://leevilappi.github.io/">**You can play the game here**</a>
 
 ## Game features
 * 	Addicting gameplay
