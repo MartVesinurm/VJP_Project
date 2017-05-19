@@ -1,6 +1,7 @@
     var soundOn = true;
     var musicOn = true;
     var musicToggle;
+    var firstTime = true;
 
 
 var menuState = {
@@ -41,7 +42,11 @@ var menuState = {
 	buttonInstructions = game.add.button(game.world.width / 2-95 , 250, 'instructions', this.help, this, 2, 1, 0);
 	buttonInfo = game.add.button(game.world.width / 2-95 , 325, 'information', this.info, this, 2, 1, 0);
 
-	this.toggleMusic();
+	
+	if(firstTime){
+		this.toggleMusic();
+		firstTime = false
+	};
 
 	},
   

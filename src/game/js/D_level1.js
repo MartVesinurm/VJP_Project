@@ -79,6 +79,10 @@ var level1State = {
 	    //Adding the pause-button
 	    this.pause_label = this.game.add.button(this.game.world.width - 130, 420, 'ui-menu', this.pause, this);
 
+	    if(this.game.sound.mute){
+	    	this.toggleMusic();
+	    }
+
 
 	},
 
